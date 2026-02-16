@@ -3,7 +3,7 @@ export default function Home() {
     <main className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
 
       <h1 className="text-6xl font-bold text-blue-900 mb-4">
-        PROXIMAMENTE WEB SEGUROS NAG
+        Hola DHEEEEEM estoy probando vercel, hastga ahora copado
       </h1>
       <h2 className="text-4xl font-bold text-blue-900 mb-4">
         Productora de Seguros Elfab
