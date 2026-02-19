@@ -6,15 +6,13 @@ export default function Cotizacion() {
         🚨 ERROR 404: Cotización no encontrada
       </h1>
 
-      <p className="text-xl mb-8 max-w-xl">
-        Parece que tu seguro incluye cobertura contra amigos curiosos.
-      </p>
+      
 
-      <img
+      {/* <img
         src="/fakio-mono.jpg"
         alt="Trolling"
         className="w-80 rounded-xl shadow-lg mb-8"
-      />
+      /> */}
 
       <a
         href="/"

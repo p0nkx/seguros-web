@@ -26,9 +26,14 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
         {/* Logo */}
-        <div className="text-2xl font-bold text-white">
-          <a href="/">Seguros</a>
-        </div>
+        <a href="/" className="flex items-center">
+          <img
+            //src={scrolled ? "/logo-blanco-cuadrado.svg" : "/logo-oscuro-cuadrado.svg"}
+            src="/logo-blanco-cuadrado.svg"
+            alt="Seguros NAG"
+            className="h-12 md:h-15 w-auto drop-shadow-lg transition-all duration-300"
+          />
+        </a>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8 font-medium">
@@ -36,7 +41,7 @@ export default function Header() {
           <li>
             <a
               href="#inicio"
-              className="text-white hover:text-[#163594] transition"
+              className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Inicio
             </a>
@@ -45,7 +50,7 @@ export default function Header() {
           <li>
             <a
               href="#servicios"
-              className="text-white hover:text-[#163594] transition"
+              className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Servicios
             </a>
@@ -54,7 +59,7 @@ export default function Header() {
           <li>
             <a
               href="#planes"
-              className="text-white hover:text-[#163594] transition"
+              className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Planes
             </a>
@@ -63,7 +68,7 @@ export default function Header() {
           <li>
             <a
               href="#contacto"
-              className="text-white hover:text-[#163594] transition"
+              className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Contacto
             </a>
@@ -104,7 +109,7 @@ export default function Header() {
           <a
             href="#inicio"
             onClick={() => setMenuOpen(false)}
-            className="block hover:text-[#163594] transition"
+            className="block hover:text-[#163594] transition-colors duration-300"
           >
             Inicio
           </a>
@@ -112,7 +117,7 @@ export default function Header() {
           <a
             href="#servicios"
             onClick={() => setMenuOpen(false)}
-            className="block hover:text-[#163594] transition"
+            className="block hover:text-[#163594] transition-colors duration-300"
           >
             Servicios
           </a>
@@ -120,7 +125,7 @@ export default function Header() {
           <a
             href="#planes"
             onClick={() => setMenuOpen(false)}
-            className="block hover:text-[#163594] transition"
+            className="block hover:text-[#163594] transition-colors duration-300"
           >
             Planes
           </a>
@@ -128,7 +133,7 @@ export default function Header() {
           <a
             href="#contacto"
             onClick={() => setMenuOpen(false)}
-            className="block hover:text-[#163594] transition"
+            className="block hover:text-[#163594] transition-colors duration-300"
           >
             Contacto
           </a>
@@ -136,7 +141,7 @@ export default function Header() {
           <a
             href="/login"
             onClick={() => setMenuOpen(false)}
-            className="block bg-[#163594] px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition"
+            className="block bg-[#163594] px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition-all duration-300"
           >
             Ingresar
           </a>
