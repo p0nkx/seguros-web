@@ -38,6 +38,7 @@ export default function RootLayout({
         <Footer />
         <WhatsappButton />
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
