@@ -14,7 +14,7 @@ export default function Home() {
       >
 
         {/* Overlay oscuro */}
-       <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/80 via-[#001f3d]/60 to-[#001f3d]/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/80 via-[#001f3d]/60 to-[#001f3d]/90"></div>
 
         {/* Contenido */}
         <div className="relative z-10 text-center px-6 max-w-4xl">
@@ -38,9 +38,10 @@ transition-all duration-300
             Solicitar Cotización
           </a>
         </div>
-<div className="absolute bottom-10 animate-bounce text-white opacity-70 text-center w-full text-2xl">
-  ↓
-</div>
+
+        <div className="absolute bottom-10 animate-bounce text-white opacity-70 text-center w-full text-2xl">
+          ↓
+        </div>
       </section>
 
       {/* ================= ASEGURADORAS ================= */}
@@ -81,17 +82,17 @@ transition-all duration-300
               <img src="/logos/experta.png" className="logo h-18" />
               <img src="/logos/sancor.png" className="logo h-25" />
               <img src="/logos/san-cristobal.png" className="logo h-25" />
-              
+
             </div>
 
             {/* BLOQUE 2 */}
             <div className="flex gap-16 items-center px-8">
-              <img src="/logos/rus.png" className="logo h-20" />
+              <img src="/logos/rus.png" className="logo h-15" />
               <img src="/logos/federacion.png" className="logo h-25" />
               <img src="/logos/rivadavia.avif" className="logo h-25" />
               <img src="/logos/atm.webp" className="logo h-20" />
               <img src="/logos/galeno.png" className="logo h-20" />
-              <img src="/logos/experta.png" className="logo h-20" />
+              <img src="/logos/experta.png" className="logo h-18" />
               <img src="/logos/sancor.png" className="logo h-25" />
               <img src="/logos/san-cristobal.png" className="logo h-25" />
             </div>
