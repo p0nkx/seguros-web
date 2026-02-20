@@ -55,10 +55,8 @@ transition-all duration-300
 
       {/* ================= ASEGURADORAS ================= */}
       <section className="py-8 bg-white text-center overflow-hidden">
-        {/* Carrusel */}
-        <div className="relative overflow-hidden max-w-7xl mx-auto">
 
-          <div className="mb-6">
+        <div className="mb-6">
 
 
             <h2 className="text-3xl md:text-4xl font-bold text-[#001f3d] mt-2">
@@ -68,10 +66,15 @@ transition-all duration-300
             <div className="w-20 h-1 bg-[#163594] mx-auto mt-4 rounded-full"></div>
           </div>
 
-          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-gray-600 mb-12 max-w-2xl mx-auto px-6">
             Trabajamos con las compañías líderes del mercado para brindarte
             las mejores coberturas y el respaldo que merecés.
           </p>
+
+        {/* Carrusel */}
+        <div className="relative overflow-hidden max-w-7xl mx-auto">
+
+          
 
 
 
