@@ -3,42 +3,42 @@ export default function Home() {
     <main className="w-full overflow-x-hidden">
 
       {/* ================= HERO ================= */}
-<section
-  id="inicio"
-  className="
+      <section
+        id="inicio"
+        className="
     relative h-screen flex items-center justify-center text-white
     bg-[url('/hero-mobile.jpg')]
-    md:bg-[url('/banner.jpg')]
+    lg:bg-[url('/banner.jpg')]
     bg-cover bg-center
   "
->
+      >
 
-  {/* Overlay oscuro */}
-  <div className="absolute inset-0 bg-[#001f3d]/80"></div>
+        {/* Overlay oscuro */}
+        <div className="absolute inset-0 bg-[#001f3d]/80"></div>
 
-  {/* Contenido */}
-  <div className="relative z-10 text-center px-6 max-w-4xl">
-    <h1 className="text-4xl md:text-6xl font-bold mb-6">
-      Protegemos lo que más importa
-    </h1>
+        {/* Contenido */}
+        <div className="relative z-10 text-center px-6 max-w-4xl">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Protegemos lo que más importa
+          </h1>
 
-    <p className="text-lg md:text-xl mb-8 text-gray-200">
-      Asesoramiento profesional en seguros de autos, motos, hogar y personas.
-    </p>
+          <p className="text-lg md:text-xl mb-8 text-gray-200">
+            Asesoramiento profesional en seguros de autos, motos, hogar y personas.
+          </p>
 
-    <a
-      href="/cotizacion"
-      className="
+          <a
+            href="/cotizacion"
+            className="
         bg-[#163594] px-8 py-3 rounded-lg text-white
         hover:bg-blue-700 hover:scale-105
         transition-all duration-300
       "
-    >
-      Solicitar Cotización
-    </a>
-  </div>
+          >
+            Solicitar Cotización
+          </a>
+        </div>
 
-</section>
+      </section>
 
 
 
