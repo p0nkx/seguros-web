@@ -14,7 +14,7 @@ export default function Home() {
       >
 
         {/* Overlay oscuro */}
-        <div className="absolute inset-0 bg-[#001f3d]/80"></div>
+       <div className="absolute inset-0 bg-gradient-to-b from-[#001f3d]/80 via-[#001f3d]/60 to-[#001f3d]/90"></div>
 
         {/* Contenido */}
         <div className="relative z-10 text-center px-6 max-w-4xl">
@@ -29,15 +29,18 @@ export default function Home() {
           <a
             href="/cotizacion"
             className="
-        bg-[#163594] px-8 py-3 rounded-lg text-white
-        hover:bg-blue-700 hover:scale-105
-        transition-all duration-300
+bg-[#163594] px-10 py-4 rounded-lg text-white font-semibold
+hover:bg-blue-700 hover:scale-105
+shadow-lg shadow-[#163594]/40
+transition-all duration-300
       "
           >
             Solicitar Cotización
           </a>
         </div>
-
+<div className="absolute bottom-10 animate-bounce text-white opacity-70 text-center w-full text-2xl">
+  ↓
+</div>
       </section>
 
       {/* ================= ASEGURADORAS ================= */}
