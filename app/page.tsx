@@ -70,13 +70,14 @@ export default function Home() {
 
             {/* BLOQUE 1 */}
             <div className="flex gap-16 items-center px-8">
-              <img src="/logos/rus.png" className="logo h-20" />
+              <img src="/logos/rus.png" className="logo h-15" />
               <img src="/logos/federacion.png" className="logo h-25" />
               <img src="/logos/rivadavia.avif" className="logo h-25" />
               <img src="/logos/atm.webp" className="logo h-20" />
               <img src="/logos/galeno.png" className="logo h-20" />
-              <img src="/logos/experta.png" className="logo h-20" />
+              <img src="/logos/experta.png" className="logo h-18" />
               <img src="/logos/sancor.png" className="logo h-25" />
+              <img src="/logos/san-cristobal.png" className="logo h-25" />
               
             </div>
 
@@ -89,6 +90,7 @@ export default function Home() {
               <img src="/logos/galeno.png" className="logo h-20" />
               <img src="/logos/experta.png" className="logo h-20" />
               <img src="/logos/sancor.png" className="logo h-25" />
+              <img src="/logos/san-cristobal.png" className="logo h-25" />
             </div>
 
           </div>
