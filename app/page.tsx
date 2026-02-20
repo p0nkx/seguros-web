@@ -102,50 +102,140 @@ transition-all duration-300
       </section>
 
 
+{/* ================= SERVICIOS ================= */}
+<section
+  id="servicios"
+  className="py-28 bg-gray-100 text-center"
+>
+  <div className="max-w-7xl mx-auto px-6">
 
-      {/* ================= SERVICIOS ================= */}
-      <section
-        id="servicios"
-        className="py-24 bg-gray-100 text-center"
-      >
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-[#001f3d] mb-12">
-            Nuestros Servicios
-          </h2>
+    {/* Encabezado */}
+    <div className="mb-16">
+      <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
+        Coberturas Disponibles
+      </span>
 
-          <div className="grid md:grid-cols-3 gap-10">
+      <h2 className="text-4xl md:text-5xl font-bold text-[#001f3d] mt-3">
+        Nuestros Servicios
+      </h2>
 
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold text-[#163594] mb-4">
-                Seguro Automotor
-              </h3>
-              <p className="text-gray-600">
-                Coberturas completas y contra terceros adaptadas a tu necesidad.
-              </p>
-            </div>
+      <div className="w-20 h-1 bg-[#163594] mx-auto mt-5 rounded-full"></div>
 
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold text-[#163594] mb-4">
-                Seguro de Hogar
-              </h3>
-              <p className="text-gray-600">
-                Protección integral para tu vivienda y bienes personales.
-              </p>
-            </div>
+      <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+        Brindamos soluciones adaptadas a cada necesidad con el respaldo de compañías líderes.
+      </p>
+    </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition">
-              <h3 className="text-xl font-semibold text-[#163594] mb-4">
-                Seguro de Vida
-              </h3>
-              <p className="text-gray-600">
-                Seguridad financiera para vos y tu familia.
-              </p>
-            </div>
+    {/* Grid */}
+    <div className="grid md:grid-cols-3 gap-10">
 
-          </div>
-        </div>
-      </section>
+      {/* AUTOMOTOR */}
+      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+        <h3 className="text-xl font-semibold text-[#163594] mb-4">
+          Seguro Automotor
+        </h3>
 
+        <p className="text-gray-600 mb-4">
+          Protección integral para tu vehículo con distintas opciones de cobertura.
+        </p>
+
+        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+          <li>Responsabilidad Civil</li>
+          <li>Terceros Completos</li>
+          <li>Todo Riesgo</li>
+        </ul>
+      </div>
+
+      {/* HOGAR */}
+      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+        <h3 className="text-xl font-semibold text-[#163594] mb-4">
+          Seguro de Hogar
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          Resguardo para tu vivienda y bienes personales ante imprevistos.
+        </p>
+
+        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+          <li>Incendio</li>
+          <li>Robo</li>
+          <li>Daños por fenómenos naturales</li>
+        </ul>
+      </div>
+
+      {/* VIDA */}
+      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+        <h3 className="text-xl font-semibold text-[#163594] mb-4">
+          Seguro de Vida
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          Seguridad financiera para proteger a tu familia.
+        </p>
+
+        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+          <li>Vida Individual</li>
+          <li>Vida Colectivo</li>
+          <li>Ahorro y retiro</li>
+        </ul>
+      </div>
+
+      {/* RESPONSABILIDAD CIVIL */}
+      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+        <h3 className="text-xl font-semibold text-[#163594] mb-4">
+          Responsabilidad Civil
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          Protección ante daños a terceros en actividades profesionales o comerciales.
+        </p>
+
+        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+          <li>Profesional</li>
+          <li>Comercial</li>
+          <li>Eventos</li>
+        </ul>
+      </div>
+
+      {/* ACCIDENTES PERSONALES */}
+      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+        <h3 className="text-xl font-semibold text-[#163594] mb-4">
+          Accidentes Personales
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          Cobertura ante accidentes en actividades laborales o recreativas.
+        </p>
+
+        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+          <li>Individual</li>
+          <li>Colectivo</li>
+          <li>Actividades específicas</li>
+        </ul>
+      </div>
+
+      {/* INCENDIO */}
+      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+        <h3 className="text-xl font-semibold text-[#163594] mb-4">
+          Seguro contra Incendio
+        </h3>
+
+        <p className="text-gray-600 mb-4">
+          Protección para propiedades ante riesgos de incendio y daños asociados.
+        </p>
+
+        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+          <li>Casa</li>
+          <li>Departamento</li>
+          <li>Comercial</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+      
 
       {/* ================= PLANES ================= */}
       <section

@@ -17,6 +17,7 @@ export default function Cotizacion() {
     localidad: "",
   });
 
+
   const handleChange = (e: any) => {
     setFormData({
       ...formData,
@@ -114,70 +115,79 @@ Localidad donde duerme: ${formData.localidad}
           </div>
 
           {/* CAMPOS CONDICIONALES AUTOMOTOR */}
-          {tipoSeguro === "automotor" && (
-            <div className="border-t pt-8 mt-8">
+         <div
+  className={`
+    overflow-hidden transition-all duration-500 ease-in-out
+    transform
+    ${
+      tipoSeguro === "automotor"
+        ? "max-h-[1000px] opacity-100 scale-100 translate-y-0 mt-8 pt-8 border-t"
+        : "max-h-0 opacity-0 scale-95 -translate-y-2"
+    }
+  `}
+>
 
-              <h2 className="text-xl font-semibold text-[#163594] mb-6">
-                Datos del Vehículo
-              </h2>
+            <h2 className="text-xl font-semibold text-[#163594] mb-6">
+              Datos del Vehículo
+            </h2>
 
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
 
-                <input
-                  type="text"
-                  name="marca"
-                  placeholder="Marca"
-                  onChange={handleChange}
-                  className="inputStyle"
-                />
+              <input
+                type="text"
+                name="marca"
+                placeholder="Marca"
+                onChange={handleChange}
+                className="inputStyle"
+              />
 
-                <input
-                  type="text"
-                  name="modelo"
-                  placeholder="Modelo"
-                  onChange={handleChange}
-                  className="inputStyle"
-                />
+              <input
+                type="text"
+                name="modelo"
+                placeholder="Modelo"
+                onChange={handleChange}
+                className="inputStyle"
+              />
 
-                <input
-                  type="number"
-                  name="anio"
-                  placeholder="Año"
-                  onChange={handleChange}
-                  className="inputStyle"
-                />
+              <input
+                type="number"
+                name="anio"
+                placeholder="Año"
+                onChange={handleChange}
+                className="inputStyle"
+              />
 
-                <select
-                  name="uso"
-                  onChange={handleChange}
-                  className="inputStyle"
-                >
-                  <option value="">Uso del vehículo</option>
-                  <option value="particular">Particular</option>
-                  <option value="comercial">Comercial</option>
-                </select>
+              <select
+                name="uso"
+                onChange={handleChange}
+                className="inputStyle"
+              >
+                <option value="">Uso del vehículo</option>
+                <option value="particular">Particular</option>
+                <option value="comercial">Comercial</option>
+              </select>
 
-                <select
-                  name="gnc"
-                  onChange={handleChange}
-                  className="inputStyle"
-                >
-                  <option value="">¿Posee GNC?</option>
-                  <option value="si">Sí</option>
-                  <option value="no">No</option>
-                </select>
+              <select
+                name="gnc"
+                onChange={handleChange}
+                className="inputStyle"
+              >
+                <option value="">¿Posee GNC?</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
 
-                <input
-                  type="text"
-                  name="localidad"
-                  placeholder="Localidad donde duerme el vehículo"
-                  onChange={handleChange}
-                  className="inputStyle md:col-span-2"
-                />
+              <input
+                type="text"
+                name="localidad"
+                placeholder="Localidad donde duerme el vehículo"
+                onChange={handleChange}
+                className="inputStyle md:col-span-2"
+              />
 
-              </div>
             </div>
-          )}
+          </div>
+
 
           {/* Botones */}
           <div className="flex flex-col md:flex-row gap-4 mt-12">

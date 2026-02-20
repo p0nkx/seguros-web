@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,10 +20,10 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-transparent py-5"
-      }`}
+  scrolled || pathname === "/cotizacion"
+    ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
+    : "bg-transparent py-5"
+}`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
