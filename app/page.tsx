@@ -1,3 +1,12 @@
+import {
+  TruckIcon,
+  HomeIcon,
+  HeartIcon,
+  ShieldCheckIcon,
+  UserGroupIcon,
+  FireIcon
+} from "@heroicons/react/24/outline";
+
 export default function Home() {
   return (
     <main className="w-full overflow-x-hidden">
@@ -102,140 +111,191 @@ transition-all duration-300
       </section>
 
 
-{/* ================= SERVICIOS ================= */}
-<section
-  id="servicios"
-  className="py-28 bg-gray-100 text-center"
->
-  <div className="max-w-7xl mx-auto px-6">
+      {/* ================= SERVICIOS ================= */}
+      <section
+        id="servicios"
+        className="py-20 bg-gray-100 text-center"
+      >
+        <div className="max-w-7xl mx-auto px-6">
 
-    {/* Encabezado */}
-    <div className="mb-16">
-      <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
-        Coberturas Disponibles
-      </span>
+          {/* Encabezado */}
+          <div className="mb-16">
+            <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
+              Coberturas Disponibles
+            </span>
 
-      <h2 className="text-4xl md:text-5xl font-bold text-[#001f3d] mt-3">
-        Nuestros Servicios
-      </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#001f3d] mt-3">
+              Nuestros Servicios
+            </h2>
 
-      <div className="w-20 h-1 bg-[#163594] mx-auto mt-5 rounded-full"></div>
+            <div className="w-20 h-1 bg-[#163594] mx-auto mt-5 rounded-full"></div>
 
-      <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-        Brindamos soluciones adaptadas a cada necesidad con el respaldo de compañías líderes.
-      </p>
-    </div>
 
-    {/* Grid */}
-    <div className="grid md:grid-cols-3 gap-10">
+          </div>
 
-      {/* AUTOMOTOR */}
-      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
-        <h3 className="text-xl font-semibold text-[#163594] mb-4">
-          Seguro Automotor
-        </h3>
+          {/* Grid */}
+          <div className="grid md:grid-cols-3 gap-10">
 
-        <p className="text-gray-600 mb-4">
-          Protección integral para tu vehículo con distintas opciones de cobertura.
-        </p>
+            {/* AUTOMOTOR */}
+            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
 
-        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
-          <li>Responsabilidad Civil</li>
-          <li>Terceros Completos</li>
-          <li>Todo Riesgo</li>
-        </ul>
-      </div>
+              <TruckIcon className="w-10 h-10 text-[#163594] mb-4" />
 
-      {/* HOGAR */}
-      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
-        <h3 className="text-xl font-semibold text-[#163594] mb-4">
-          Seguro de Hogar
-        </h3>
+              <h3 className="text-xl font-semibold text-[#163594] mb-4">
+                Seguro Automotor
+              </h3>
 
-        <p className="text-gray-600 mb-4">
-          Resguardo para tu vivienda y bienes personales ante imprevistos.
-        </p>
+              <p className="text-gray-600 mb-4">
+                Protección integral para tu vehículo con distintas opciones de cobertura.
+              </p>
 
-        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
-          <li>Incendio</li>
-          <li>Robo</li>
-          <li>Daños por fenómenos naturales</li>
-        </ul>
-      </div>
+              <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                <li>Responsabilidad Civil</li>
+                <li>Terceros Completos</li>
+                <li>Todo Riesgo</li>
+              </ul>
 
-      {/* VIDA */}
-      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
-        <h3 className="text-xl font-semibold text-[#163594] mb-4">
-          Seguro de Vida
-        </h3>
+              <a href="/cotizacion?tipo=automotor"
+              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+              >
+                Cotizar ahora →
+              </a>
 
-        <p className="text-gray-600 mb-4">
-          Seguridad financiera para proteger a tu familia.
-        </p>
+            </div>
 
-        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
-          <li>Vida Individual</li>
-          <li>Vida Colectivo</li>
-          <li>Ahorro y retiro</li>
-        </ul>
-      </div>
+            {/* HOGAR */}
+            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+              <HomeIcon className="w-10 h-10 text-[#163594] mb-4" />
+              <h3 className="text-xl font-semibold text-[#163594] mb-4">
+                Seguro de Hogar
+              </h3>
 
-      {/* RESPONSABILIDAD CIVIL */}
-      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
-        <h3 className="text-xl font-semibold text-[#163594] mb-4">
-          Responsabilidad Civil
-        </h3>
+              <p className="text-gray-600 mb-4">
+                Resguardo para tu vivienda y bienes personales ante imprevistos.
+              </p>
 
-        <p className="text-gray-600 mb-4">
-          Protección ante daños a terceros en actividades profesionales o comerciales.
-        </p>
+              <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                <li>Incendio</li>
+                <li>Robo</li>
+                <li>Daños por fenómenos naturales</li>
+              </ul>
 
-        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
-          <li>Profesional</li>
-          <li>Comercial</li>
-          <li>Eventos</li>
-        </ul>
-      </div>
+              <a href="/cotizacion?tipo=hogar"
+              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+              >
+                Cotizar ahora →
+              </a>
 
-      {/* ACCIDENTES PERSONALES */}
-      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
-        <h3 className="text-xl font-semibold text-[#163594] mb-4">
-          Accidentes Personales
-        </h3>
+            </div>
 
-        <p className="text-gray-600 mb-4">
-          Cobertura ante accidentes en actividades laborales o recreativas.
-        </p>
+            {/* VIDA */}
+            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+              <HeartIcon className="w-10 h-10 text-[#163594] mb-4" />
+              <h3 className="text-xl font-semibold text-[#163594] mb-4">
+                Seguro de Vida
+              </h3>
 
-        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
-          <li>Individual</li>
-          <li>Colectivo</li>
-          <li>Actividades específicas</li>
-        </ul>
-      </div>
+              <p className="text-gray-600 mb-4">
+                Seguridad financiera para proteger a tu familia.
+              </p>
 
-      {/* INCENDIO */}
-      <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
-        <h3 className="text-xl font-semibold text-[#163594] mb-4">
-          Seguro contra Incendio
-        </h3>
+              <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                <li>Vida Individual</li>
+                <li>Vida Colectivo</li>
+                <li>Ahorro y retiro</li>
+              </ul>
 
-        <p className="text-gray-600 mb-4">
-          Protección para propiedades ante riesgos de incendio y daños asociados.
-        </p>
+              <a href="/cotizacion?tipo=vida"
+              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+              >
+                Cotizar ahora →
+              </a>
 
-        <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
-          <li>Casa</li>
-          <li>Departamento</li>
-          <li>Comercial</li>
-        </ul>
-      </div>
+            </div>
 
-    </div>
+            {/* RESPONSABILIDAD CIVIL */}
+            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+              <ShieldCheckIcon className="w-10 h-10 text-[#163594] mb-4" />
+              <h3 className="text-xl font-semibold text-[#163594] mb-4">
+                Responsabilidad Civil
+              </h3>
 
-  </div>
-</section>
-      
+              <p className="text-gray-600 mb-4">
+                Protección ante daños a terceros en actividades profesionales o comerciales.
+              </p>
+
+              <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                <li>Profesional</li>
+                <li>Comercial</li>
+                <li>Eventos</li>
+              </ul>
+
+              <a href="/cotizacion?tipo=responsabilidad"
+              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+              >
+                Cotizar ahora →
+              </a>
+
+            </div>
+
+            {/* ACCIDENTES PERSONALES */}
+            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+              <UserGroupIcon className="w-10 h-10 text-[#163594] mb-4" />
+              <h3 className="text-xl font-semibold text-[#163594] mb-4">
+                Accidentes Personales
+              </h3>
+
+              <p className="text-gray-600 mb-4">
+                Cobertura ante accidentes en actividades laborales o recreativas.
+              </p>
+
+              <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                <li>Individual</li>
+                <li>Colectivo</li>
+                <li>Actividades específicas</li>
+              </ul>
+
+              <a href="/cotizacion?tipo=accidentes"
+              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+              >
+                Cotizar ahora →
+              </a>
+
+            </div>
+
+            {/* INCENDIO */}
+            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left">
+              <FireIcon className="w-10 h-10 text-[#163594] mb-4" />
+              <h3 className="text-xl font-semibold text-[#163594] mb-4">
+                Seguro contra Incendio
+              </h3>
+
+              <p className="text-gray-600 mb-4">
+                Protección para propiedades ante riesgos de incendio y daños asociados.
+              </p>
+
+              <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+                <li>Casa</li>
+                <li>Departamento</li>
+                <li>Comercial</li>
+              </ul>
+
+              <a href="/cotizacion?tipo=incendio"
+              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+              >
+                Cotizar ahora →
+              </a>
+
+            </div>
+
+          </div>
+          <br />
+          <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
+            Y mucho más...
+            </span>
+        </div>
+      </section>
+
 
       {/* ================= PLANES ================= */}
       <section

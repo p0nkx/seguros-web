@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-
+import { useSearchParams } from "next/navigation";
 
 export default function Cotizacion() {
   const [tipoSeguro, setTipoSeguro] = useState("");
@@ -16,6 +16,15 @@ export default function Cotizacion() {
     gnc: "",
     localidad: "",
   });
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+  const tipoDesdeURL = searchParams.get("tipo");
+  if (tipoDesdeURL) {
+    setTipoSeguro(tipoDesdeURL);
+  }
+}, [searchParams]);
 
 
   const handleChange = (e: any) => {
