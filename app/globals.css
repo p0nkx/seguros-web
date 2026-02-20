@@ -48,3 +48,31 @@ html {
 .animate-bounce-slow {
   animation: bounceSlow 2.5s infinite ease-in-out;
 }
+
+
+.logo {
+  height: 60px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* ================= CARRUSEL ASEGURADORAS ================= */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
