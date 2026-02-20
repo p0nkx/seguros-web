@@ -7,7 +7,7 @@ export default function Home() {
         id="inicio"
         className="
     relative h-screen flex items-center justify-center text-white
-    bg-[url('/hero-mobile.jpg')]
+    bg-[url('/hero-mobile2.webp')]
     lg:bg-[url('/banner.jpg')]
     bg-cover bg-center
   "
@@ -39,6 +39,44 @@ export default function Home() {
         </div>
 
       </section>
+
+      {/* ================= ASEGURADORAS ================= */}
+<section className="py-20 bg-white text-center overflow-hidden">
+  <div className="max-w-6xl mx-auto px-6">
+
+    <h2 className="text-3xl md:text-4xl font-bold text-[#001f3d] mb-6">
+      Aseguradoras con las que trabajamos
+    </h2>
+
+    <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+      Trabajamos con las compañías líderes del mercado para brindarte
+      las mejores coberturas y el respaldo que merecés.
+    </p>
+
+    {/* Carrusel */}
+    <div className="relative w-full overflow-hidden">
+
+      <div className="flex gap-16 animate-scroll whitespace-nowrap">
+
+        <img src="/logos/aseg1.png" className="h-12 object-contain" />
+        <img src="/logos/aseg2.png" className="h-12 object-contain" />
+        <img src="/logos/aseg3.png" className="h-12 object-contain" />
+        <img src="/logos/aseg4.png" className="h-12 object-contain" />
+        <img src="/logos/aseg5.png" className="h-12 object-contain" />
+
+        {/* Duplicados para efecto infinito */}
+        <img src="/logos/aseg1.png" className="h-12 object-contain" />
+        <img src="/logos/aseg2.png" className="h-12 object-contain" />
+        <img src="/logos/aseg3.png" className="h-12 object-contain" />
+        <img src="/logos/aseg4.png" className="h-12 object-contain" />
+        <img src="/logos/aseg5.png" className="h-12 object-contain" />
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 
 
