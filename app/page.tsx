@@ -41,39 +41,59 @@ export default function Home() {
       </section>
 
       {/* ================= ASEGURADORAS ================= */}
-<section className="py-20 bg-white text-center overflow-hidden">
-  {/* Carrusel */}
-<div className="relative overflow-hidden max-w-7xl mx-auto">
+      <section className="py-8 bg-white text-center overflow-hidden">
+        {/* Carrusel */}
+        <div className="relative overflow-hidden max-w-7xl mx-auto">
 
-  {/* Fade lateral opcional (muy elegante) */}
-  <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
-  <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+          <div className="mb-6">
 
-  <div className="flex w-max animate-scroll">
 
-    {/* BLOQUE 1 */}
-    <div className="flex gap-16 items-center px-8">
-      <img src="/logos/rus.png" className="logo" />
-      <img src="/logos/experta.png" className="logo" />
-      <img src="/logos/federacion.png" className="logo" />
-      <img src="/logos/galeno.png" className="logo" />
-      <img src="/logos/rivadavia.png" className="logo" />
-      <img src="/logos/sancor.png" className="logo" />
-    </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#001f3d] mt-2">
+              Aseguradoras con las que trabajamos
+            </h2>
 
-    {/* BLOQUE 2 */}
-    <div className="flex gap-16 items-center px-8">
-      <img src="/logos/rus.png" className="logo" />
-      <img src="/logos/experta.png" className="logo" />
-      <img src="/logos/federacion.png" className="logo" />
-      <img src="/logos/galeno.png" className="logo" />
-      <img src="/logos/rivadavia.png" className="logo" />
-      <img src="/logos/sancor.png" className="logo" />
-    </div>
+            <div className="w-20 h-1 bg-[#163594] mx-auto mt-4 rounded-full"></div>
+          </div>
 
-  </div>
-</div>
-</section>
+          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+            Trabajamos con las compañías líderes del mercado para brindarte
+            las mejores coberturas y el respaldo que merecés.
+          </p>
+
+
+
+          {/* Fade lateral opcional (muy elegante) */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+          <div className="flex w-max animate-scroll">
+
+            {/* BLOQUE 1 */}
+            <div className="flex gap-16 items-center px-8">
+              <img src="/logos/rus.png" className="logo h-20" />
+              <img src="/logos/federacion.png" className="logo h-25" />
+              <img src="/logos/rivadavia.avif" className="logo h-25" />
+              <img src="/logos/atm.webp" className="logo h-20" />
+              <img src="/logos/galeno.png" className="logo h-20" />
+              <img src="/logos/experta.png" className="logo h-20" />
+              <img src="/logos/sancor.png" className="logo h-25" />
+              
+            </div>
+
+            {/* BLOQUE 2 */}
+            <div className="flex gap-16 items-center px-8">
+              <img src="/logos/rus.png" className="logo h-20" />
+              <img src="/logos/federacion.png" className="logo h-25" />
+              <img src="/logos/rivadavia.avif" className="logo h-25" />
+              <img src="/logos/atm.webp" className="logo h-20" />
+              <img src="/logos/galeno.png" className="logo h-20" />
+              <img src="/logos/experta.png" className="logo h-20" />
+              <img src="/logos/sancor.png" className="logo h-25" />
+            </div>
+
+          </div>
+        </div>
+      </section>
 
 
 

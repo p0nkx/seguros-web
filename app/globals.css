@@ -49,9 +49,7 @@ html {
   animation: bounceSlow 2.5s infinite ease-in-out;
 }
 
-
 .logo {
-  height: 60px;
   object-fit: contain;
   opacity: 0.7;
   transition: all 0.3s ease;
