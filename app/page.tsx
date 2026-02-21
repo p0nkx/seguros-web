@@ -463,25 +463,47 @@ transition-all duration-300
       </section>
 
 
-      {/* ================= CONTACTO ================= */}
-      <section
-        id="contacto"
-        className="py-24 bg-[#001f3d] text-white text-center"
+     {/* ================= CTA FINAL ================= */}
+<section
+  id="contacto"
+  className="py-28 bg-[#001f3d] text-white text-center"
+>
+  <div className="max-w-4xl mx-auto px-6">
+
+    <h2 className="text-4xl md:text-4xl font-bold mb-6">
+      ¿Listo para proteger lo que más importa?
+    </h2>
+
+    <p className="text-gray-300 mb-10 text-lg max-w-2xl mx-auto">
+      Recibí asesoramiento personalizado sin compromiso.
+      Te ayudamos a elegir la cobertura ideal según tu necesidad.
+    </p>
+
+    {/* <div className="flex flex-col md:flex-row gap-4 justify-center">
+
+      <a
+        href="/cotizacion"
+        className="bg-[#163594] px-10 py-4 rounded-xl font-semibold hover:bg-blue-700 transition shadow-lg"
       >
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-8">
-            Contactanos
-          </h2>
+        Solicitar Cotización
+      </a>
 
-          <p className="text-gray-300 mb-8">
-            Estamos listos para asesorarte y encontrar la mejor cobertura para vos.
-          </p>
+      <a
+        href="https://wa.me/549XXXXXXXXXX"
+        target="_blank"
+        className="border border-white px-10 py-4 rounded-xl font-semibold hover:bg-white hover:text-[#001f3d] transition"
+      >
+        Escribinos por WhatsApp
+      </a>
 
-          <button className="bg-[#163594] px-8 py-3 rounded-lg hover:bg-blue-700 transition">
-            Enviar Consulta
-          </button>
-        </div>
-      </section>
+    </div> */}
+
+    <p className="text-sm text-gray-400 mt-8">
+      Respuesta rápida • Atención personalizada • Sin compromiso
+    </p>
+
+  </div>
+</section>
 
     </main>
   );
