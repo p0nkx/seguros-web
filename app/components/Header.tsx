@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,42 +42,42 @@ export default function Header() {
         <ul className="hidden md:flex items-center gap-8 font-medium">
 
           <li>
-            <a
-              href="#inicio"
+            <Link
+              href="/#inicio"
               className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Inicio
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              href="#servicios"
+            <Link
+              href="/#servicios"
               className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Servicios
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              href="#planes"
+            <Link
+              href="/#planes"
               className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Planes
-            </a>
+            </Link>
           </li>
 
           <li>
-            <a
-              href="#contacto"
+            <Link
+              href="/#contacto"
               className="text-white hover:text-[#163594] transition-colors duration-300"
             >
               Contacto
-            </a>
+            </Link>
           </li>
 
-          <li>
+          {/* <li>
             <a
               href="/login"
               className={`px-4 py-2 rounded-lg transition-all duration-300 ${
@@ -87,7 +88,7 @@ export default function Header() {
             >
               Ingresar
             </a>
-          </li>
+          </li> */}
 
         </ul>
 
