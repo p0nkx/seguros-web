@@ -48,7 +48,7 @@ transition-all duration-300
           </a>
         </div>
 
-        
+
       </section>
 
       {/* ================= ASEGURADORAS ================= */}
@@ -57,22 +57,22 @@ transition-all duration-300
         <div className="mb-6">
 
 
-            <h2 className="text-3xl md:text-4xl font-bold text-[#001f3d] mt-2">
-              Aseguradoras con las que trabajamos
-            </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#001f3d] mt-2">
+            Aseguradoras con las que trabajamos
+          </h2>
 
-            <div className="w-20 h-1 bg-[#163594] mx-auto mt-4 rounded-full"></div>
-          </div>
+          <div className="w-20 h-1 bg-[#163594] mx-auto mt-4 rounded-full"></div>
+        </div>
 
-          <p className="text-gray-600 mb-12 max-w-2xl mx-auto px-6">
-            Trabajamos con las compañías líderes del mercado para brindarte
-            las mejores coberturas y el respaldo que merecés.
-          </p>
+        <p className="text-gray-600 mb-12 max-w-2xl mx-auto px-6">
+          Trabajamos con las compañías líderes del mercado para brindarte
+          las mejores coberturas y el respaldo que merecés.
+        </p>
 
         {/* Carrusel */}
         <div className="relative overflow-hidden max-w-7xl mx-auto">
 
-          
+
 
 
 
@@ -157,7 +157,7 @@ transition-all duration-300
               </ul>
 
               <a href="/cotizacion?tipo=automotor"
-              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+                className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
               </a>
@@ -182,7 +182,7 @@ transition-all duration-300
               </ul>
 
               <a href="/cotizacion?tipo=hogar"
-              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+                className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
               </a>
@@ -207,7 +207,7 @@ transition-all duration-300
               </ul>
 
               <a href="/cotizacion?tipo=vida"
-              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+                className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
               </a>
@@ -232,7 +232,7 @@ transition-all duration-300
               </ul>
 
               <a href="/cotizacion?tipo=responsabilidad"
-              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+                className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
               </a>
@@ -257,7 +257,7 @@ transition-all duration-300
               </ul>
 
               <a href="/cotizacion?tipo=accidentes"
-              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+                className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
               </a>
@@ -282,7 +282,7 @@ transition-all duration-300
               </ul>
 
               <a href="/cotizacion?tipo=incendio"
-              className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
+                className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
               </a>
@@ -293,137 +293,172 @@ transition-all duration-300
           <br />
           <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
             Y mucho más...
-            </span>
+          </span>
         </div>
       </section>
 
-{/* ================= Planes ================= */}
+      {/* ================= Planes ================= */}
 
-<section
-  id="planes"
-  className="py-20 bg-gray-50 text-center"
->
-  <div className="max-w-7xl mx-auto px-6">
+      <section
+        id="planes"
+        className="py-20 bg-gray-50 text-center"
+      >
+        <div className="max-w-7xl mx-auto px-6">
 
-    {/* Encabezado */}
-    <div className="mb-20">
-      <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
-        Seguro Automotor
-      </span>
-
-      <h2 className="text-4xl md:text-5xl font-bold text-[#001f3d] mt-3">
-        Niveles de Cobertura
-      </h2>
-
-      <div className="w-20 h-1 bg-[#163594] mx-auto mt-5 rounded-full"></div>
-
-      <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-        Elegí el nivel de protección que mejor se adapte a tu vehículo y a tu tranquilidad.
-      </p>
-    </div>
-
-    <div className="grid md:grid-cols-3 gap-10 items-stretch">
-
-      {/* RESPONSABILIDAD CIVIL */}
-      <div className="flex flex-col justify-between bg-white border border-gray-200 p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 text-left">
-
-        <div>
-          <h3 className="text-2xl font-semibold mb-4 text-[#001f3d]">
-            Responsabilidad Civil
-          </h3>
-
-          <p className="text-gray-600 mb-6">
-            Es el seguro mínimo obligatorio por ley para poder circular.
-            Cubre daños ocasionados a terceros en caso de accidente.
-            <span className="block mt-2 font-medium text-gray-800">
-              No cubre daños propios del vehículo.
+          {/* Encabezado */}
+          <div className="mb-20">
+            <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
+              Seguro Automotor
             </span>
-          </p>
+
+            <h2 className="text-4xl md:text-5xl font-bold text-[#001f3d] mt-3">
+              Niveles de Cobertura
+            </h2>
+
+            <div className="w-20 h-1 bg-[#163594] mx-auto mt-5 rounded-full"></div>
+
+            <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+              Elegí el nivel de protección que mejor se adapte a tu vehículo y a tu tranquilidad.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-10 items-stretch">
+
+            {/* RESPONSABILIDAD CIVIL */}
+            <div className="flex flex-col justify-between bg-white border border-gray-200 p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 text-left">
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-[#001f3d]">
+                  Responsabilidad Civil
+                </h3>
+
+                <p className="text-gray-600 mb-6">
+                  Es el seguro mínimo obligatorio por ley para poder circular.
+                  Cubre daños ocasionados a terceros en caso de accidente.
+                  <span className="block mt-2 font-medium text-gray-800">
+                    No cubre daños propios del vehículo.
+                  </span>
+                </p>
+              </div>
+
+              <a
+                href="/cotizacion?tipo=automotor"
+                className="mt-8 inline-block text-center bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
+              >
+                Cotizar RC
+              </a>
+            </div>
+
+            {/* TERCEROS COMPLETOS */}
+            <div className="relative flex flex-col justify-between bg-white border-2 border-[#163594] p-12 rounded-3xl shadow-2xl scale-105 text-left">
+
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#163594] text-white text-xs px-5 py-2 rounded-full shadow-md">
+                Más elegido
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-[#163594]">
+                  Terceros Completos
+                </h3>
+
+                <p className="text-gray-600 mb-6">
+                  Protección amplia con excelente equilibrio entre precio y cobertura.
+                </p>
+
+                <ul className="text-sm text-gray-600 space-y-2 mb-6">
+                  <li>✔ Responsabilidad Civil</li>
+                  <li>✔ Destrucción total por accidente</li>
+                  <li>✔ Incendio total y parcial</li>
+                  <li>✔ Robo o hurto total y parcial</li>
+                  <li>✔ Reposición de cristales</li>
+                  <li>✔ Grúa hasta 300 km</li>
+                  <li>✔ Cobertura contra granizo</li>
+                </ul>
+              </div>
+
+              <a
+                href="/cotizacion?tipo=automotor"
+                className="mt-8 inline-block text-center bg-[#163594] text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition shadow-md"
+              >
+                Cotizar Terceros
+              </a>
+            </div>
+
+            {/* TODO RIESGO */}
+            <div className="flex flex-col justify-between bg-white border border-gray-200 p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 text-left">
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-[#001f3d]">
+                  Todo Riesgo
+                </h3>
+
+                <p className="text-gray-600 mb-6">
+                  La cobertura más completa disponible.
+                  Protege tanto daños a terceros como daños propios,
+                  incluso cuando el accidente es responsabilidad del conductor.
+                  Funciona con franquicia: pagás un monto fijo y la compañía cubre el resto.
+                </p>
+              </div>
+
+              <a
+                href="/cotizacion?tipo=automotor"
+                className="mt-8 inline-block text-center bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
+              >
+                Cotizar Todo Riesgo
+              </a>
+            </div>
+
+          </div>
+
         </div>
-
-        <a
-          href="/cotizacion?tipo=automotor"
-          className="mt-8 inline-block text-center bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
-        >
-          Cotizar RC
-        </a>
-      </div>
-
-      {/* TERCEROS COMPLETOS */}
-      <div className="relative flex flex-col justify-between bg-white border-2 border-[#163594] p-12 rounded-3xl shadow-2xl scale-105 text-left">
-
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#163594] text-white text-xs px-5 py-2 rounded-full shadow-md">
-          Más elegido
-        </div>
-
-        <div>
-          <h3 className="text-2xl font-semibold mb-4 text-[#163594]">
-            Terceros Completos
-          </h3>
-
-          <p className="text-gray-600 mb-6">
-            Protección amplia con excelente equilibrio entre precio y cobertura.
-          </p>
-
-          <ul className="text-sm text-gray-600 space-y-2 mb-6">
-            <li>✔ Responsabilidad Civil</li>
-            <li>✔ Destrucción total por accidente</li>
-            <li>✔ Incendio total y parcial</li>
-            <li>✔ Robo o hurto total y parcial</li>
-            <li>✔ Reposición de cristales</li>
-            <li>✔ Grúa hasta 300 km</li>
-            <li>✔ Cobertura contra granizo</li>
-          </ul>
-        </div>
-
-        <a
-          href="/cotizacion?tipo=automotor"
-          className="mt-8 inline-block text-center bg-[#163594] text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition shadow-md"
-        >
-          Cotizar Terceros
-        </a>
-      </div>
-
-      {/* TODO RIESGO */}
-      <div className="flex flex-col justify-between bg-white border border-gray-200 p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 text-left">
-
-        <div>
-          <h3 className="text-2xl font-semibold mb-4 text-[#001f3d]">
-            Todo Riesgo
-          </h3>
-
-          <p className="text-gray-600 mb-6">
-            La cobertura más completa disponible.
-            Protege tanto daños a terceros como daños propios,
-            incluso cuando el accidente es responsabilidad del conductor.
-            Funciona con franquicia: pagás un monto fijo y la compañía cubre el resto.
-          </p>
-        </div>
-
-        <a
-          href="/cotizacion?tipo=automotor"
-          className="mt-8 inline-block text-center bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
-        >
-          Cotizar Todo Riesgo
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-</section>
+      </section>
 
       {/* ================= NOSOTROS ================= */}
-      <section className="py-24 bg-gray-100 text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-[#001f3d] mb-8">
+      <section className="py-28 bg-gray-100">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+
+          <h2 className="text-4xl md:text-5xl font-bold text-[#001f3d] mb-6">
             ¿Por qué elegirnos?
           </h2>
 
-          <p className="text-gray-700 text-lg">
-            Más de 10 años asesorando clientes con compromiso, transparencia
-            y acompañamiento personalizado en cada etapa.
+          <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
+            No solo cotizamos seguros. Acompañamos a nuestros clientes antes, durante y después de cada decisión,
+            brindando asesoramiento claro y personalizado.
           </p>
+
+          <div className="grid md:grid-cols-3 gap-10 text-left">
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm">
+              <h3 className="font-semibold text-[#163594] text-xl mb-4">
+                Asesoramiento Personalizado
+              </h3>
+              <p className="text-gray-600">
+                Analizamos tu situación y te recomendamos la mejor cobertura según tus necesidades,
+                no según una compañía específica.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm">
+              <h3 className="font-semibold text-[#163594] text-xl mb-4">
+                Trabajamos con Múltiples Aseguradoras
+              </h3>
+              <p className="text-gray-600">
+                Cotizamos entre las principales compañías del mercado para ofrecerte
+                la mejor relación entre precio y protección.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm">
+              <h3 className="font-semibold text-[#163594] text-xl mb-4">
+                Acompañamiento en Siniestros
+              </h3>
+              <p className="text-gray-600">
+                En caso de un imprevisto, no estás solo.
+                Te guiamos en cada paso del proceso para que todo sea más simple.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
