@@ -1,9 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { validarCotizacion } from "@/lib/validators";
 
 export default function CotizacionForm({ tipoInicial }: { tipoInicial?: string }) {
   const [tipoSeguro, setTipoSeguro] = useState(tipoInicial || "");
+  const [coberturaAuto, setCoberturaAuto] = useState("");
+
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [formData, setFormData] = useState({
     nombre: "",
@@ -25,21 +30,41 @@ export default function CotizacionForm({ tipoInicial }: { tipoInicial?: string }
   };
 
   const handleWhatsApp = () => {
-    const mensaje = `
-Nueva Cotización:
+    const nuevosErrores = validarCotizacion(tipoSeguro, coberturaAuto, formData);
 
-Tipo: ${tipoSeguro}
-Nombre: ${formData.nombre}
-Email: ${formData.email}
-Teléfono: ${formData.telefono}
+    if (Object.keys(nuevosErrores).length > 0) {
+      setErrors(nuevosErrores);
+      return;
+    }
 
+    setErrors({});
+
+    let detalleAuto = "";
+
+    if (tipoSeguro === "automotor") {
+      detalleAuto = `
+Cobertura: ${coberturaAuto}
 Marca: ${formData.marca}
 Modelo: ${formData.modelo}
 Año: ${formData.anio}
 Uso: ${formData.uso}
 GNC: ${formData.gnc}
-Localidad donde duerme: ${formData.localidad}
-    `;
+Localidad: ${formData.localidad}
+`;
+    }
+
+    const mensaje = `
+Nueva Cotización Web
+
+Tipo de Seguro: ${tipoSeguro}
+
+Datos del Cliente:
+Nombre: ${formData.nombre}
+Email: ${formData.email}
+Teléfono: ${formData.telefono}
+
+${detalleAuto}
+`;
 
     window.open(
       `https://wa.me/549XXXXXXXXXX?text=${encodeURIComponent(mensaje)}`,
@@ -50,7 +75,7 @@ Localidad donde duerme: ${formData.localidad}
   return (
     <main className="min-h-screen bg-gray-100 py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        
+
         {/* Título */}
         <div className="text-center mb-12">
           <span className="text-sm uppercase tracking-widest text-[#163594] font-semibold">
@@ -88,102 +113,186 @@ Localidad donde duerme: ${formData.localidad}
 
           {/* Datos personales */}
           <div className="grid md:grid-cols-2 gap-6 mb-10">
-            <input
-              type="text"
-              name="nombre"
-              placeholder="Nombre Completo"
-              onChange={handleChange}
-              className="inputStyle"
-            />
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              className="inputStyle"
-            />
+            <div className="flex flex-col">
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre Completo"
+                onChange={handleChange}
+                className={`inputStyle ${errors.nombre ? "border-red-500" : ""}`}
+              />
+              <div className="min-h-[20px]">
+                {errors.nombre && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.nombre}
+                  </p>
+                )}
+              </div>
+            </div>
 
-            <input
-              type="tel"
-              name="telefono"
-              placeholder="Teléfono"
-              onChange={handleChange}
-              className="inputStyle md:col-span-2"
-            />
+            <div className="flex flex-col">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                className={`inputStyle ${errors.email ? "border-red-500" : ""}`}
+              />
+              <div className="min-h-[20px]">
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <input
+                type="tel"
+                name="telefono"
+                placeholder="Teléfono"
+                onChange={handleChange}
+                className={`inputStyle ${errors.telefono ? "border-red-500" : ""}`}
+              />
+              <div className="min-h-[20px]">
+                {errors.telefono && (
+                  <p className="text-red-500 text-sm mt-1">{errors.telefono}</p>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* CAMPOS CONDICIONALES AUTOMOTOR */}
-         <div
-  className={`
-    overflow-hidden transition-all duration-500 ease-in-out
-    transform
-    ${
-      tipoSeguro === "automotor"
-        ? "max-h-[1000px] opacity-100 scale-100 translate-y-0 mt-8 pt-8 border-t"
-        : "max-h-0 opacity-0 scale-95 -translate-y-2"
-    }
-  `}
->
+          <div
+            className={`
+                    overflow-hidden transition-all duration-500 ease-in-out
+                    transform
+                    ${tipoSeguro === "automotor"
+                ? "max-h-[1000px] opacity-100 scale-100 translate-y-0 mt-8 pt-8 border-t"
+                : "max-h-0 opacity-0 scale-95 -translate-y-2"
+              }
+                  `}
+          >
+
+            {/* Selección de cobertura */}
+            <div className="mb-8">
+              <label className="block mb-2 font-semibold text-[#001f3d]">
+                Tipo de Cobertura
+              </label>
+
+              <select
+                value={coberturaAuto}
+                onChange={(e) => setCoberturaAuto(e.target.value)}
+                className={`w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#163594] outline-none transition ${errors.coberturaAuto ? "border-red-500" : ""}`}
+              >
+                {errors.coberturaAuto && (
+                  <p className="text-red-500 text-sm mt-1">{errors.coberturaAuto}</p>
+                )}
+                <option value="">Seleccionar cobertura</option>
+                <option value="Responsabilidad Civil">Responsabilidad Civil (RC)</option>
+                <option value="Terceros Completos">Terceros Completos</option>
+                <option value="Todo Riesgo">Todo Riesgo</option>
+              </select>
+            </div>
 
             <h2 className="text-xl font-semibold text-[#163594] mb-6">
               Datos del Vehículo
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6">
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  name="marca"
+                  placeholder="Marca"
+                  onChange={handleChange}
+                  className={`inputStyle ${errors.marca ? "border-red-500" : ""}`}
+                />
+                <div className="min-h-[20px]">
+                  {errors.marca && (
+                    <p className="text-red-500 text-sm mt-1">{errors.marca}</p>
+                  )}
+                </div>
+              </div>
 
-              <input
-                type="text"
-                name="marca"
-                placeholder="Marca"
-                onChange={handleChange}
-                className="inputStyle"
-              />
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  name="modelo"
+                  placeholder="Modelo"
+                  onChange={handleChange}
+                  className={`inputStyle ${errors.modelo ? "border-red-500" : ""}`}
+                />
+                <div className="min-h-[20px]">
+                  {errors.modelo && (
+                    <p className="text-red-500 text-sm mt-1">{errors.modelo}</p>
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <input
+                  type="number"
+                  name="anio"
+                  placeholder="Año"
+                  onChange={handleChange}
+                  className={`inputStyle ${errors.anio ? "border-red-500" : ""}`}
+                />
+                <div className="min-h-[20px]">
+                  {errors.anio && (
+                    <p className="text-red-500 text-sm mt-1">{errors.anio}</p>
+                  )}
+                </div>
+              </div>
 
-              <input
-                type="text"
-                name="modelo"
-                placeholder="Modelo"
-                onChange={handleChange}
-                className="inputStyle"
-              />
+              <div className="flex flex-col">
+                <select
+                  name="uso"
+                  onChange={handleChange}
+                  className={`inputStyle ${errors.uso ? "border-red-500" : ""}`}
+                >
+                  <option value="">Uso del vehículo</option>
+                  <option value="particular">Particular</option>
+                  <option value="comercial">Comercial</option>
+                </select>
 
-              <input
-                type="number"
-                name="anio"
-                placeholder="Año"
-                onChange={handleChange}
-                className="inputStyle"
-              />
+                <div className="min-h-[20px]">
+                  {errors.uso && (
+                    <p className="text-red-500 text-sm mt-1">{errors.uso}</p>
+                  )}
+                </div>
+              </div>
 
-              <select
-                name="uso"
-                onChange={handleChange}
-                className="inputStyle"
-              >
-                <option value="">Uso del vehículo</option>
-                <option value="particular">Particular</option>
-                <option value="comercial">Comercial</option>
-              </select>
+              <div className="flex flex-col">
+                <select
+                  name="gnc"
+                  onChange={handleChange}
+                  className={`inputStyle ${errors.gnc ? "border-red-500" : ""}`}
+                >
+                  <option value="">¿Posee GNC?</option>
+                  <option value="si">Sí</option>
+                  <option value="no">No</option>
+                </select>
 
-              <select
-                name="gnc"
-                onChange={handleChange}
-                className="inputStyle"
-              >
-                <option value="">¿Posee GNC?</option>
-                <option value="si">Sí</option>
-                <option value="no">No</option>
-              </select>
+                <div className="min-h-[20px]">
+                  {errors.gnc && (
+                    <p className="text-red-500 text-sm mt-1">{errors.gnc}</p>
+                  )}
+                </div>
+              </div>
 
-              <input
-                type="text"
-                name="localidad"
-                placeholder="Localidad donde duerme el vehículo"
-                onChange={handleChange}
-                className="inputStyle md:col-span-2"
-              />
-
+              <div className="flex flex-col">
+                <input
+                  type="text"
+                  name="localidad"
+                  placeholder="Localidad"
+                  onChange={handleChange}
+                  className={`inputStyle ${errors.localidad ? "border-red-500" : ""}`}
+                />
+                <div className="min-h-[20px]">
+                  {errors.localidad && (
+                    <p className="text-red-500 text-sm mt-1">{errors.localidad}</p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -203,6 +312,7 @@ Localidad donde duerme: ${formData.localidad}
               Enviar por WhatsApp
             </button>
           </div>
+
 
         </div>
 

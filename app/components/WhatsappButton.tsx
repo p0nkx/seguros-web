@@ -35,7 +35,7 @@ export default function WhatsappButton() {
         rounded-full bg-[#25D366] text-white text-2xl md:text-3xl
         shadow-lg
         transition-all duration-500
-        hover:scale-110 hover:shadow-[0_0_25px_rgba(37,211,102,0.6)]
+        hover:scale-110 hover:shadow-[0_0_25px_rgba(37,211,102,0.6)] 
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}
       `}
     >
