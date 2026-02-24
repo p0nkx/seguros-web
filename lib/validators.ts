@@ -1,63 +1,60 @@
+// /lib/validators.ts
+import { segurosConfig } from "./segurosConfig";
+
 export function validarCotizacion(
   tipoSeguro: string,
-  coberturaAuto: string,
   formData: any
 ) {
   const errores: Record<string, string> = {};
 
-  // Tipo de seguro
   if (!tipoSeguro) {
     errores.tipoSeguro = "Seleccioná un tipo de seguro";
+    return errores;
   }
 
-  // Datos personales
-  if (!formData.nombre.trim()) {
+  if (!formData.nombre?.trim()) {
     errores.nombre = "Falta ingresar nombre";
   }
 
   if (!formData.email?.trim()) {
     errores.email = "Falta ingresar email";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    errores.email = "Ingresá un email válido";
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(formData.email)) {
+      errores.email = "Ingresá un email válido";
+    }
   }
 
-  if (!formData.telefono.trim()) {
+  if (!formData.telefono?.trim()) {
     errores.telefono = "Falta ingresar teléfono";
   }
 
-  // Automotor
-  if (tipoSeguro === "automotor") {
-    if (!coberturaAuto) {
-      errores.coberturaAuto = "Seleccioná una cobertura";
+  const config = segurosConfig[tipoSeguro as keyof typeof segurosConfig];
+
+  if (!config) return errores;
+
+  config.campos.forEach((campo) => {
+    const valor = formData[campo.name];
+
+    if (campo.required && !valor) {
+      errores[campo.name] = `Falta completar ${campo.label}`;
+      return;
     }
 
-    if (!formData.marca.trim()) {
-      errores.marca = "Falta ingresar marca";
-    }
+    // Validaciones para campos number
+    if (campo.type === "number" && valor) {
+      const numero = Number(valor);
 
-    if (!formData.modelo.trim()) {
-      errores.modelo = "Falta ingresar modelo";
-    }
+      if (campo.min !== undefined && numero < campo.min) {
+        errores[campo.name] = `El mínimo permitido es ${campo.min}`;
+      }
 
-    const currentYear = new Date().getFullYear();
-
-    if (!formData.anio) {
-      errores.anio = "Falta ingresar año";
-    } else if (
-      Number(formData.anio) < 1900 ||
-      Number(formData.anio) > currentYear
-    ) {
-      errores.anio = "Ingresá un año válido";
+      if (campo.max !== undefined && numero > campo.max) {
+        errores[campo.name] = `El máximo permitido es ${campo.max}`;
+      }
     }
-
-    if (!formData.uso) {
-      errores.uso = "Seleccioná el uso del vehículo";
-    }
-
-    if (!formData.localidad.trim()) {
-      errores.localidad = "Falta ingresar localidad";
-    }
-  }
+  });
 
   return errores;
 }
