@@ -15,8 +15,10 @@ export function validarCotizacion(
     errores.nombre = "Falta ingresar nombre";
   }
 
-  if (!formData.email.trim()) {
+  if (!formData.email?.trim()) {
     errores.email = "Falta ingresar email";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    errores.email = "Ingresá un email válido";
   }
 
   if (!formData.telefono.trim()) {
@@ -37,9 +39,14 @@ export function validarCotizacion(
       errores.modelo = "Falta ingresar modelo";
     }
 
+    const currentYear = new Date().getFullYear();
+
     if (!formData.anio) {
       errores.anio = "Falta ingresar año";
-    } else if (Number(formData.anio) <= 1900) {
+    } else if (
+      Number(formData.anio) < 1900 ||
+      Number(formData.anio) > currentYear
+    ) {
       errores.anio = "Ingresá un año válido";
     }
 

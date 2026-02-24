@@ -67,7 +67,7 @@ ${detalleAuto}
 `;
 
     window.open(
-      `https://wa.me/549XXXXXXXXXX?text=${encodeURIComponent(mensaje)}`,
+      `https://wa.me/+541131005176?text=${encodeURIComponent(mensaje)}`,
       "_blank"
     );
   };
@@ -99,22 +99,26 @@ ${detalleAuto}
             </label>
 
             <div className="flex flex-col">
-  <select
-    value={tipoSeguro}
-    onChange={(e) => setTipoSeguro(e.target.value)}
-    className={`inputStyle appearance-none bg-white ${
-      !tipoSeguro ? "text-gray-400" : "text-gray-700"
-    }`}
-  >
-    <option value="" >
-      Seleccionar tipo de seguro
-    </option>
-    <option value="automotor">Automotor</option>
-    <option value="incendio">Incendio</option>
-    <option value="responsabilidad">Responsabilidad Civil</option>
-    <option value="accidentes">Accidentes Personales</option>
-  </select>
-</div>
+              <select
+                value={tipoSeguro}
+                onChange={(e) => setTipoSeguro(e.target.value)}
+                className={`inputStyle appearance-none bg-white ${!tipoSeguro ? "text-gray-400" : "text-gray-700"
+                  }`}
+              >
+                <option value="" >
+                  Seleccionar tipo de seguro
+                </option>
+                <option value="automotor">Automotor</option>
+                <option value="incendio">Incendio</option>
+                <option value="responsabilidad">Responsabilidad Civil</option>
+                <option value="accidentes">Accidentes Personales</option>
+              </select>
+              <div className="min-h-[20px]">
+                    {errors.tipoSeguro && (
+                      <p className="text-red-500 text-sm mt-1">{errors.tipoSeguro}</p>
+                    )}
+                  </div>
+            </div>
           </div>
 
           {/* Datos personales */}
@@ -185,19 +189,30 @@ ${detalleAuto}
                 Tipo de Cobertura
               </label>
 
-              <select
-                value={coberturaAuto}
-                onChange={(e) => setCoberturaAuto(e.target.value)}
-                className={`w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#163594] outline-none transition ${errors.coberturaAuto ? "border-red-500" : ""}`}
-              >
-                {errors.coberturaAuto && (
-                  <p className="text-red-500 text-sm mt-1">{errors.coberturaAuto}</p>
-                )}
-                <option value="">Seleccionar cobertura</option>
-                <option value="Responsabilidad Civil">Responsabilidad Civil (RC)</option>
-                <option value="Terceros Completos">Terceros Completos</option>
-                <option value="Todo Riesgo">Todo Riesgo</option>
-              </select>
+              <div className="flex flex-col">
+                <select
+                  value={coberturaAuto}
+                  onChange={(e) => setCoberturaAuto(e.target.value)}
+                  className={`inputStyle appearance-none bg-white ${!coberturaAuto ? "text-gray-400" : "text-gray-700"
+                    } ${errors.coberturaAuto ? "border-red-500" : ""}`}
+                >
+                  <option value="" >
+                    Seleccionar cobertura
+                  </option>
+                  <option value="Responsabilidad Civil">Responsabilidad Civil (RC)</option>
+                  <option value="Terceros Completos">Terceros Completos</option>
+                  <option value="Todo Riesgo">Todo Riesgo</option>
+                </select>
+
+                <div className="min-h-[20px]">
+                  {errors.coberturaAuto && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.coberturaAuto}
+                    </p>
+                  )}
+                </div>
+              </div>
+
             </div>
 
             <h2 className="text-xl font-semibold text-[#163594] mb-6">
@@ -250,38 +265,46 @@ ${detalleAuto}
               </div>
 
               <div className="flex flex-col">
-                <select
-                  name="uso"
-                  onChange={handleChange}
-                  className={`inputStyle ${errors.uso ? "border-red-500" : ""}`}
-                >
-                  <option value="">Uso del vehículo</option>
-                  <option value="particular">Particular</option>
-                  <option value="comercial">Comercial</option>
-                </select>
 
-                <div className="min-h-[20px]">
-                  {errors.uso && (
-                    <p className="text-red-500 text-sm mt-1">{errors.uso}</p>
-                  )}
+                <div className="flex flex-col">
+                  <select
+                    name="uso"
+                    onChange={handleChange}
+                    className={`inputStyle appearance-none bg-white ${!formData.uso ? "text-gray-400" : "text-gray-700"
+                      } ${errors.uso ? "border-red-500" : ""}`}
+                  >
+                    <option value="" >
+                      Uso del vehículo
+                    </option>
+                    <option value="particular">Particular</option>
+                    <option value="comercial">Comercial</option>
+                  </select>
+
+                  <div className="min-h-[20px]">
+                    {errors.uso && (
+                      <p className="text-red-500 text-sm mt-1">{errors.uso}</p>
+                    )}
+                  </div>
                 </div>
               </div>
 
               <div className="flex flex-col">
-                <select
-                  name="gnc"
-                  onChange={handleChange}
-                  className={`inputStyle ${errors.gnc ? "border-red-500" : ""}`}
-                >
-                  <option value="">¿Posee GNC?</option>
-                  <option value="si">Sí</option>
-                  <option value="no">No</option>
-                </select>
 
-                <div className="min-h-[20px]">
-                  {errors.gnc && (
-                    <p className="text-red-500 text-sm mt-1">{errors.gnc}</p>
-                  )}
+                <div className="flex flex-col">
+                  <select
+                    name="gnc"
+                    onChange={handleChange}
+                    className={`inputStyle appearance-none bg-white ${!formData.gnc ? "text-gray-400" : "text-gray-700"
+                      }`}
+                  >
+                    <option value="">
+                      ¿Posee GNC?
+                    </option>
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                  </select>
+
+                  <div className="min-h-[20px]" />
                 </div>
               </div>
 
