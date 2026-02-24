@@ -101,6 +101,7 @@ ${detalleAuto}
             <select
               value={tipoSeguro}
               onChange={(e) => setTipoSeguro(e.target.value)}
+              
               className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#163594] outline-none transition"
             >
               <option value="">Seleccionar</option>

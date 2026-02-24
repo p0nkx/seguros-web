@@ -76,8 +76,11 @@ html {
 }
 
 .inputStyle {
-  @apply w-full border border-gray-300 rounded-lg px-4 py-3
-  focus:ring-2 focus:ring-[#163594] outline-none transition;
+  @apply w-full border border-gray-300 rounded-lg px-4 py-3 
+  placeholder:text-gray-600 placeholder:opacity-80
+  text-base
+  focus:ring-2 focus:ring-[#163594] 
+  outline-none transition;
 }
 
  html {
