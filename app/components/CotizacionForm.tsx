@@ -98,18 +98,23 @@ ${detalleAuto}
               Tipo de Seguro
             </label>
 
-            <select
-              value={tipoSeguro}
-              onChange={(e) => setTipoSeguro(e.target.value)}
-              
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#163594] outline-none transition"
-            >
-              <option value="">Seleccionar</option>
-              <option value="automotor">Automotor</option>
-              <option value="incendio">Incendio</option>
-              <option value="responsabilidad">Responsabilidad Civil</option>
-              <option value="accidentes">Accidentes Personales</option>
-            </select>
+            <div className="flex flex-col">
+  <select
+    value={tipoSeguro}
+    onChange={(e) => setTipoSeguro(e.target.value)}
+    className={`inputStyle appearance-none bg-white ${
+      !tipoSeguro ? "text-gray-400" : "text-gray-700"
+    }`}
+  >
+    <option value="" >
+      Seleccionar tipo de seguro
+    </option>
+    <option value="automotor">Automotor</option>
+    <option value="incendio">Incendio</option>
+    <option value="responsabilidad">Responsabilidad Civil</option>
+    <option value="accidentes">Accidentes Personales</option>
+  </select>
+</div>
           </div>
 
           {/* Datos personales */}
