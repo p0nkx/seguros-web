@@ -9,7 +9,6 @@ export function validarCotizacion(
 
   if (!tipoSeguro) {
     errores.tipoSeguro = "Seleccioná un tipo de seguro";
-    return errores;
   }
 
   if (!formData.nombre?.trim()) {
