@@ -27,6 +27,12 @@ export function validarCotizacion(
 
   if (!formData.telefono?.trim()) {
     errores.telefono = "Falta ingresar teléfono";
+  }else{
+    const telefonoRegex = /^\d{8,}$/;
+
+    if (!telefonoRegex.test(formData.telefono)) {
+      errores.telefono = "Ingresá un teléfono válido (mínimo 8 dígitos)";
+    }
   }
 
   const config = segurosConfig[tipoSeguro as keyof typeof segurosConfig];

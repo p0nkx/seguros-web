@@ -115,6 +115,8 @@ ${detalleSeguro}
             <div className="flex flex-col">
               <select
                 value={tipoSeguro}
+                aria-label="tipo de seguro"
+                
                 onChange={(e) => setTipoSeguro(e.target.value)}
                 className={`inputStyle appearance-none bg-white ${
                   !tipoSeguro ? "text-gray-400" : "text-gray-700"
@@ -129,6 +131,7 @@ ${detalleSeguro}
                 <option value="responsabilidad">Responsabilidad Civil</option>
                 <option value="accidentes">Accidentes Personales</option>
                 <option value="incendio">Incendio</option>
+                <option value="otros">Otros</option>
               </select>
 
               <div className="min-h-[20px]">
@@ -188,7 +191,7 @@ ${detalleSeguro}
 
             <div className="flex flex-col">
               <input
-                type="tel"
+                type="number"
                 name="telefono"
                 placeholder="Teléfono"
                 value={formData.telefono}
@@ -235,13 +238,15 @@ ${detalleSeguro}
                       {campo.type === "select" ? (
                         <select
                           name={campo.name}
+                          aria-label={campo.label}
                           value={formData[campo.name] || ""}
                           onChange={handleChange}
                           className={`inputStyle ${
                             errors[campo.name] ? "border-red-500" : ""
                           }`}
                         >
-                          <option value="">
+                          <option value=""
+                          aria-label={`Seleccionar ${campo.label}`}>
                             Seleccionar {campo.label}
                           </option>
 

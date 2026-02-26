@@ -45,7 +45,7 @@ export const segurosConfig: Record<string, SeguroConfig> = {
     campos: [
       {
         name: "cobertura",
-        label: "Tipo de Cobertura",
+        label: "Tipo de Cobertura automotor",
         type: "select",
         required: true,
         options: ["Responsabilidad Civil", "Terceros Completos", "Todo Riesgo"],
@@ -74,15 +74,15 @@ export const segurosConfig: Record<string, SeguroConfig> = {
   vida: {
     titulo: "Datos del Seguro de Vida",
     campos: [
-      { name: "edad", label: "Edad", type: "number", required: true, min: 18, max: 80 },
+      { name: "edad", label: "Edad", type: "number", required: true, min: 18, max: 90 },
     ],
   },
   hogar: {
     titulo: "Datos del Seguro de Hogar",
     campos: [
-      { name: "metros", label: "Metros cuadrados", type: "number", required: true },
+      { name: "metros", label: "Metros cuadrados", type: "number", required: true, min: 1 },
       {
-        name: "Tipo de Vivienda",
+        name: "Vivienda",
         label: "Tipo de Vivienda",
         type: "select",
         required: true,
@@ -99,6 +99,7 @@ export const segurosConfig: Record<string, SeguroConfig> = {
       {
         name: "sumaAsegurada",
         label: "Suma Asegurada",
+        min: 100000,
         type: "number",
         required: true,
       },
@@ -115,8 +116,10 @@ export const segurosConfig: Record<string, SeguroConfig> = {
         type: "text",
         required: true,
       },
-      { name: "sumaAsegurada", label: "Suma Asegurada", type: "number", required: true },
+      { name: "sumaAsegurada", label: "Suma Asegurada", type: "number", required: true , min: 3000000, max: 60000000},
       { name: "tipo", label: "Tipo de cobertura", type: "select", required: true, options: ["Colectivo", "Individual"] },
+      { name: "localidad", label: "Localidad", type: "text", required: true },
+      { name: "periodo", label: "Periodo de cobertura", type: "select", required: true, options: ["Periodo corto", "Periodo largo"] },
     ],
   },
 
@@ -133,6 +136,13 @@ export const segurosConfig: Record<string, SeguroConfig> = {
       },
       { name: "localidad", label: "Localidad", type: "text", required: true },
     ],
+  },
+  
+  otros:{
+    titulo: "otros",
+    campos: [
+      { name: "detalle", label: "Detalle del seguro", type: "text", required: true},
+  ],
   },
 
 }
