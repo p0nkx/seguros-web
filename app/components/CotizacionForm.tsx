@@ -4,8 +4,14 @@ import { useState } from "react";
 import { validarCotizacion } from "@/lib/validators";
 import { segurosConfig } from "@/lib/segurosConfig";
 
-export default function CotizacionForm({ tipoInicial }: { tipoInicial?: string }) {
 
+export default function CotizacionForm({ 
+  tipoInicial, 
+  coberturaInicial 
+}: { 
+  tipoInicial?: string; 
+  coberturaInicial?: string; 
+}) {
   // ================================
   // ESTADOS PRINCIPALES
   // ================================
@@ -17,6 +23,7 @@ export default function CotizacionForm({ tipoInicial }: { tipoInicial?: string }
     nombre: "",
     email: "",
     telefono: "",
+    cobertura: coberturaInicial || "", // <-- Si existe coberturaInicial, la usa; si no, vacío.
   });
 
   // ================================

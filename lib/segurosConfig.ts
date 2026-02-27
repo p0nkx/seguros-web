@@ -144,5 +144,6 @@ export const segurosConfig: Record<string, SeguroConfig> = {
       { name: "detalle", label: "Detalle del seguro", type: "text", required: true},
   ],
   },
+  
 
 }

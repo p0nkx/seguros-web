@@ -342,7 +342,7 @@ transition-all duration-300
               </div>
 
               <a
-                href="/cotizacion?tipo=automotor"
+                href="/cotizacion?tipo=automotor&subtipo=Responsabilidad Civil"
                 className="mt-8 inline-block text-center bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
               >
                 Cotizar RC
@@ -377,7 +377,7 @@ transition-all duration-300
               </div>
 
               <a
-                href="/cotizacion?tipo=automotor"
+                href="/cotizacion?tipo=automotor&subtipo=Terceros Completos"
                 className="mt-8 inline-block text-center bg-[#163594] text-white font-semibold py-3 rounded-xl hover:bg-blue-700 transition shadow-md"
               >
                 Cotizar Terceros
@@ -401,7 +401,7 @@ transition-all duration-300
               </div>
 
               <a
-                href="/cotizacion?tipo=automotor"
+                href="/cotizacion?tipo=automotor&subtipo=Todo Riesgo"
                 className="mt-8 inline-block text-center bg-gray-200 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-300 transition"
               >
                 Cotizar Todo Riesgo
