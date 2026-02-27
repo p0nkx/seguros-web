@@ -82,7 +82,7 @@ ${detalleSeguro}
 `;
 
     window.open(
-      `https://wa.me/+541131005176?text=${encodeURIComponent(mensaje)}`,
+      `https://wa.me/+541164129888?text=${encodeURIComponent(mensaje)}`,
       "_blank"
     );
   };
