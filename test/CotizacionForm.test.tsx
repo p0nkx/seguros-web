@@ -516,7 +516,7 @@ it("Muestra campos dinámicos al seleccionar responsabilidad civil", async () =>
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "responsabilidad"
+    "responsabilidad civil"
   );
   expect(screen.getByText("Datos del Seguro de Responsabilidad Civil")).toBeInTheDocument();//titulo del formulario
   expect(screen.getByPlaceholderText("Actividad a Realizar")).toBeInTheDocument();
@@ -533,7 +533,7 @@ it("No permite enviar si la actividad a realizar está vacía", async () => {
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "responsabilidad"
+    "responsabilidad civil"
   );
   await userEvent.type(
     screen.getByPlaceholderText("Suma Asegurada"),
@@ -551,7 +551,7 @@ it("No permite enviar si la suma asegurada está vacía", async () => {
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "responsabilidad"
+    "responsabilidad civil"
   );
   await userEvent.type(
     screen.getByPlaceholderText("Actividad a Realizar"),
@@ -569,7 +569,7 @@ it("No permite enviar si la suma asegurada es menor a 100000", async () => {
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "responsabilidad"
+    "responsabilidad civil"
   );
   await userEvent.type(
     screen.getByPlaceholderText("Actividad a Realizar"),
@@ -598,7 +598,7 @@ it("Muestra campos dinámicos al seleccionar accidentes personales", async () =>
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "accidentes"
+    "accidentes personales"
   );
   expect(screen.getByText("Datos del Seguro de Accidentes Personales")).toBeInTheDocument();//titulo del formulario
   expect(screen.getByPlaceholderText("Edad")).toBeInTheDocument();
@@ -622,7 +622,7 @@ it("no permite enviar si tipo de cobertura no está seleccionado", async () => {
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "accidentes"
+    "accidentes personales"
   );
   await userEvent.click(
     screen.getByText("Enviar por WhatsApp")
@@ -635,7 +635,7 @@ it("no permite enviar si periodo de cobertura no está seleccionado", async () =
   render(<CotizacionForm />);
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de seguro/i }),
-    "accidentes"
+    "accidentes personales"
   );
   await userEvent.selectOptions(
     screen.getByRole("combobox", { name: /tipo de cobertura/i }),

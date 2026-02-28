@@ -3,20 +3,23 @@
 import { useState } from "react";
 import { validarCotizacion } from "@/lib/validators";
 import { segurosConfig } from "@/lib/segurosConfig";
+import Swal from 'sweetalert2';
 
 
-export default function CotizacionForm({ 
-  tipoInicial, 
-  coberturaInicial 
-}: { 
-  tipoInicial?: string; 
-  coberturaInicial?: string; 
+export default function CotizacionForm({
+  tipoInicial,
+  coberturaInicial
+}: {
+  tipoInicial?: string;
+  coberturaInicial?: string;
 }) {
   // ================================
   // ESTADOS PRINCIPALES
   // ================================
   const [tipoSeguro, setTipoSeguro] = useState(tipoInicial || "");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSending, setIsSending] = useState(false); // Para manejar el estado de envío y evitar múltiples clics
+  
 
   // Datos base + dinámicos
   const [formData, setFormData] = useState<any>({
@@ -87,6 +90,92 @@ ${detalleSeguro}
     );
   };
 
+//enviar por maail//
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'center', 
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  background: '#111b31',
+  color: '#fff',
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+});
+
+const handleEmail = async () => {
+if (isSending) return; // SI YA ESTÁ ENVIANDO, SE CORTA ACÁ (BLOQUEO)
+
+  const nuevosErrores = validarCotizacion(tipoSeguro, formData);
+
+  if (Object.keys(nuevosErrores).length > 0) {
+    setErrors(nuevosErrores);
+    return;
+  }
+
+  setErrors({});
+  setIsSending(true); // ACTIVAMOS EL BLOQUEO
+
+  let detalleSeguro = "";
+  if (config) {
+    config.campos.forEach((campo) => {
+      detalleSeguro += `${campo.label}: ${formData[campo.name] || "-"}\n`;
+    });
+  }
+
+  try {
+    // Nota: Recuerda poner la URL "/api/enviar-email" aquí cuando termines de testear
+    const response = await fetch("/api/enviar-email", { 
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tipoSeguro,
+        ...formData,
+        detalle: detalleSeguro,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error en el servidor");
+    }
+
+    const data = await response.json();
+
+    if (data.success) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Cotización enviada con éxito'
+      });
+      
+      // Limpiar campos
+      
+      setFormData({ nombre: "", email: "", telefono: "" });
+      setTipoSeguro(""); // Si quieres limpiar el tipo de seguro también, descomenta esta línea
+    } else {
+      // Error controlado (ej: error de credenciales de mail)
+      Toast.fire({
+        icon: 'error',
+        title: 'Error al enviar la solicitud'
+      });
+    }
+
+  } catch (error) {
+    // AQUÍ ESTABA EL ERROR: Cambiamos el alert por el Toast
+    console.error(error);
+    Toast.fire({
+      icon: 'error',
+      title: 'No se pudo conectar con el servidor'
+    });
+  } finally {
+    setIsSending(false); // DESACTIVAMOS EL BLOQUEO
+  }
+};
+
   return (
     <main className="min-h-screen bg-gray-100 py-24 px-6">
       <div className="max-w-4xl mx-auto">
@@ -123,11 +212,10 @@ ${detalleSeguro}
               <select
                 value={tipoSeguro}
                 aria-label="tipo de seguro"
-                
+
                 onChange={(e) => setTipoSeguro(e.target.value)}
-                className={`inputStyle appearance-none bg-white ${
-                  !tipoSeguro ? "text-gray-400" : "text-gray-700"
-                }`}
+                className={`inputStyle appearance-none bg-white ${!tipoSeguro ? "text-gray-400" : "text-gray-700"
+                  }`}
               >
                 <option value="">
                   Seleccionar tipo de seguro
@@ -135,8 +223,8 @@ ${detalleSeguro}
                 <option value="automotor">Automotor</option>
                 <option value="vida">Vida</option>
                 <option value="hogar">Hogar</option>
-                <option value="responsabilidad">Responsabilidad Civil</option>
-                <option value="accidentes">Accidentes Personales</option>
+                <option value="responsabilidad civil">Responsabilidad Civil</option>
+                <option value="accidentes personales">Accidentes Personales</option>
                 <option value="incendio">Incendio</option>
                 <option value="otros">Otros</option>
               </select>
@@ -163,9 +251,8 @@ ${detalleSeguro}
                 placeholder="Nombre Completo"
                 value={formData.nombre}
                 onChange={handleChange}
-                className={`inputStyle ${
-                  errors.nombre ? "border-red-500" : ""
-                }`}
+                className={`inputStyle ${errors.nombre ? "border-red-500" : ""
+                  }`}
               />
               <div className="min-h-[20px]">
                 {errors.nombre && (
@@ -183,9 +270,8 @@ ${detalleSeguro}
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`inputStyle ${
-                  errors.email ? "border-red-500" : ""
-                }`}
+                className={`inputStyle ${errors.email ? "border-red-500" : ""
+                  }`}
               />
               <div className="min-h-[20px]">
                 {errors.email && (
@@ -203,9 +289,8 @@ ${detalleSeguro}
                 placeholder="Teléfono"
                 value={formData.telefono}
                 onChange={handleChange}
-                className={`inputStyle ${
-                  errors.telefono ? "border-red-500" : ""
-                }`}
+                className={`inputStyle ${errors.telefono ? "border-red-500" : ""
+                  }`}
               />
               <div className="min-h-[20px]">
                 {errors.telefono && (
@@ -225,10 +310,9 @@ ${detalleSeguro}
             className={`
               overflow-hidden transition-all duration-500 ease-in-out
               transform
-              ${
-                config
-                  ? "max-h-[2000px] opacity-100 scale-100 translate-y-0 mt-8 pt-8 border-t"
-                  : "max-h-0 opacity-0 scale-95 -translate-y-2"
+              ${config
+                ? "max-h-[2000px] opacity-100 scale-100 translate-y-0 mt-8 pt-8 border-t"
+                : "max-h-0 opacity-0 scale-95 -translate-y-2"
               }
             `}
           >
@@ -248,12 +332,11 @@ ${detalleSeguro}
                           aria-label={campo.label}
                           value={formData[campo.name] || ""}
                           onChange={handleChange}
-                          className={`inputStyle ${
-                            errors[campo.name] ? "border-red-500" : ""
-                          }`}
+                          className={`inputStyle ${errors[campo.name] ? "border-red-500" : ""
+                            }`}
                         >
                           <option value=""
-                          aria-label={`Seleccionar ${campo.label}`}>
+                            aria-label={`Seleccionar ${campo.label}`}>
                             Seleccionar {campo.label}
                           </option>
 
@@ -270,9 +353,8 @@ ${detalleSeguro}
                           placeholder={campo.label}
                           value={formData[campo.name] || ""}
                           onChange={handleChange}
-                          className={`inputStyle ${
-                            errors[campo.name] ? "border-red-500" : ""
-                          }`}
+                          className={`inputStyle ${errors[campo.name] ? "border-red-500" : ""
+                            }`}
                         />
                       )}
 
@@ -295,6 +377,7 @@ ${detalleSeguro}
           {/* ============================= */}
           <div className="flex flex-col md:flex-row gap-4 mt-12">
             <button
+              onClick={handleEmail}
               className="flex-1 bg-[#163594] text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md cursor-pointer"
             >
               Enviar por Email

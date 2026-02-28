@@ -92,7 +92,7 @@ export const segurosConfig: Record<string, SeguroConfig> = {
     ],
   },
 
-  responsabilidad: {
+  "responsabilidad civil": {
     titulo: "Datos del Seguro de Responsabilidad Civil",
     campos: [
       { name: "actividad", label: "Actividad a Realizar", type: "text", required: true },
@@ -106,7 +106,7 @@ export const segurosConfig: Record<string, SeguroConfig> = {
     ],
   },
 
-  accidentes: {
+  "accidentes personales": {
     titulo: "Datos del Seguro de Accidentes Personales",
     campos: [ 
       { name: "edad", label: "Edad", type: "number", required: true ,min: 18, max: 80},
