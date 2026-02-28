@@ -20,8 +20,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Seguros Web",
-  description: "Productora de seguros",
+  title: "Estudio NAG | Seguros y Asesoría",
+  description: "Productora de seguros profesional. Cotizá tu seguro online.",
+  
+  // Aquí traducimos lo que te dio la web al formato de Next.js:
+  icons: {
+    icon: [
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
+  
+  // OPCIONAL: Esto es lo que hablamos de la tarjeta de WhatsApp
+  openGraph: {
+    title: "Estudio NAG | Seguros",
+    description: "Cotizá tu seguro online en minutos.",
+    url: "https://estudio-nag.vercel.app/",
+    siteName: "Estudio NAG",
+    images: [
+      {
+        url: "/opencard.jpg", // Asegúrate de tener esta imagen también en /public
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
