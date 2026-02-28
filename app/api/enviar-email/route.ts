@@ -4,22 +4,15 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const data = await req.json();
-
-    console.log("--- DEBUG DE CREDENCIALES ---");
-console.log("EMAIL_USER definido:", !!process.env.EMAIL_USER);
-console.log("Longitud de EMAIL_PASS:", process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 0);
+    
 
     const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true, 
-  auth: {
-    user: process.env.EMAIL_USER?.trim(), // .trim() elimina espacios invisibles
-    pass: process.env.EMAIL_PASS?.trim(),
-  },
-  // Añade esto para asegurar que no falle por protocolos viejos
-  authMethod: 'PLAIN'
-});
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
     // Preparamos el link de WhatsApp con el prefijo +54 (Argentina)
     // Eliminamos cualquier carácter que no sea número del teléfono del cliente
