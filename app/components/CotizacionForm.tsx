@@ -19,7 +19,7 @@ export default function CotizacionForm({
   const [tipoSeguro, setTipoSeguro] = useState(tipoInicial || "");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSending, setIsSending] = useState(false); // Para manejar el estado de envío y evitar múltiples clics
-  
+
 
   // Datos base + dinámicos
   const [formData, setFormData] = useState<any>({
@@ -90,91 +90,96 @@ ${detalleSeguro}
     );
   };
 
-//enviar por maail//
+  //enviar por maail//
 
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'center', 
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  background: '#111b31',
-  color: '#fff',
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-});
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'center',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    background: '#111b31',
+    color: '#fff',
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
 
-const handleEmail = async () => {
-if (isSending) return; // SI YA ESTÁ ENVIANDO, SE CORTA ACÁ (BLOQUEO)
+  const handleEmail = async () => {
+    if (isSending) return; // SI YA ESTÁ ENVIANDO, SE CORTA ACÁ (BLOQUEO)
 
-  const nuevosErrores = validarCotizacion(tipoSeguro, formData);
+    const nuevosErrores = validarCotizacion(tipoSeguro, formData);
 
-  if (Object.keys(nuevosErrores).length > 0) {
-    setErrors(nuevosErrores);
-    return;
-  }
-
-  setErrors({});
-  setIsSending(true); // ACTIVAMOS EL BLOQUEO
-
-  let detalleSeguro = "";
-  if (config) {
-    config.campos.forEach((campo) => {
-      detalleSeguro += `${campo.label}: ${formData[campo.name] || "-"}\n`;
-    });
-  }
-
-  try {
-    // Nota: Recuerda poner la URL "/api/enviar-email" aquí cuando termines de testear
-    const response = await fetch("/api/enviar-email", { 
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tipoSeguro,
-        ...formData,
-        detalle: detalleSeguro,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Error en el servidor");
+    if (Object.keys(nuevosErrores).length > 0) {
+      setErrors(nuevosErrores);
+      return;
     }
 
-    const data = await response.json();
+    setErrors({});
+    setIsSending(true); // ACTIVAMOS EL BLOQUEO
 
-    if (data.success) {
-      Toast.fire({
-        icon: 'success',
-        title: 'Cotización enviada con éxito'
+    let detalleSeguro = "";
+    if (config) {
+      config.campos.forEach((campo) => {
+        detalleSeguro += `${campo.label}: ${formData[campo.name] || "-"}\n`;
       });
-      
-      // Limpiar campos
-      
-      setFormData({ nombre: "", email: "", telefono: "" });
-      setTipoSeguro(""); // Si quieres limpiar el tipo de seguro también, descomenta esta línea
-    } else {
-      // Error controlado (ej: error de credenciales de mail)
+    }
+
+    try {
+      // Nota: Recuerda poner la URL "/api/enviar-email" aquí cuando termines de testear
+      const response = await fetch("/api/enviar-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tipoSeguro,
+          ...formData,
+          detalle: detalleSeguro,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error en el servidor");
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        Toast.fire({
+          icon: 'success',
+          title: 'Cotización enviada con éxito'
+        });
+
+        // Limpiar campos
+
+        setFormData({ nombre: "", email: "", telefono: "" });
+        setTipoSeguro(""); // Si quieres limpiar el tipo de seguro también, descomenta esta línea
+
+        //DESACTIVAR CARGA DESPUÉS DEL ÉXITO
+        setIsSending(false);
+      } else {
+        // Error controlado (ej: error de credenciales de mail)
+        Toast.fire({
+          icon: 'error',
+          title: 'Error al enviar la solicitud'
+        });
+      }
+
+    } catch (error) {
+
+      console.error(error);
       Toast.fire({
         icon: 'error',
         title: 'Error al enviar la solicitud'
       });
+    } finally {
+      setIsSending(false); // DESACTIVAMOS EL BLOQUEO
+      //DESACTIVAR CARGA SI HAY ERROR (para que pueda reintentar)
+      setIsSending(false);
     }
-
-  } catch (error) {
-    // AQUÍ ESTABA EL ERROR: Cambiamos el alert por el Toast
-    console.error(error);
-    Toast.fire({
-      icon: 'error',
-      title: 'No se pudo conectar con el servidor'
-    });
-  } finally {
-    setIsSending(false); // DESACTIVAMOS EL BLOQUEO
-  }
-};
+  };
 
   return (
     <main className="min-h-screen bg-gray-100 py-24 px-6">
@@ -378,9 +383,24 @@ if (isSending) return; // SI YA ESTÁ ENVIANDO, SE CORTA ACÁ (BLOQUEO)
           <div className="flex flex-col md:flex-row gap-4 mt-12">
             <button
               onClick={handleEmail}
-              className="flex-1 bg-[#163594] text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md cursor-pointer"
+              disabled={isSending} // Bloquea clics y cambia estilos
+              className={`flex-1 flex items-center justify-center gap-3 py-3 rounded-lg font-semibold text-white shadow-md transition-all duration-300 ${isSending
+                  ? "bg-blue-800 cursor-not-allowed opacity-80" // Estilo elegante de carga
+                  : "bg-[#163594] hover:bg-blue-700 cursor-pointer" // Estilo normal
+                }`}
             >
-              Enviar por Email
+              {isSending ? (
+                <>
+                  {/* SPINNER ELEGANTE SVG (Animado con Tailwind) */}
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>Enviando...</span>
+                </>
+              ) : (
+                <span>Enviar por Email</span>
+              )}
             </button>
 
             <button
