@@ -231,7 +231,7 @@ transition-all duration-300
                 <li>Eventos</li>
               </ul>
 
-              <a href="/cotizacion?tipo=responsabilidad"
+              <a href="/cotizacion?tipo=responsabilidad civil"
                 className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →
@@ -256,7 +256,7 @@ transition-all duration-300
                 <li>Actividades específicas</li>
               </ul>
 
-              <a href="/cotizacion?tipo=accidentes"
+              <a href="/cotizacion?tipo=accidentes personales"
                 className="inline-block mt-6 text-sm font-semibold text-[#163594] hover:underline"
               >
                 Cotizar ahora →

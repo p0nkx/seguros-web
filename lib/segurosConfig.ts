@@ -68,6 +68,7 @@ export const segurosConfig: Record<string, SeguroConfig> = {
         options: ["si", "no"],
       },
       { name: "localidad", label: "Localidad", type: "text", required: true },
+    
     ],
   },
 

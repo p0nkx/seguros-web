@@ -34,7 +34,8 @@ export const metadata: Metadata = {
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
-  manifest: "/site.webmanifest",
+
+  //manifest: "/site.webmanifest", //esta linea permite que la web sea una app descargable para el celular
   
   // OPCIONAL: Esto es lo que hablamos de la tarjeta de WhatsApp
   openGraph: {
