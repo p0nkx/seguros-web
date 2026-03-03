@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-  scrolled || pathname === "/cotizacion"
+  scrolled || pathname === "/cotizacion" || pathname === "/clientes"
     ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
     : "bg-transparent py-5"
 }`}
