@@ -63,3 +63,64 @@ export function validarCotizacion(
 
   return errores;
 }
+
+
+// --- AGREGA ESTO AL FINAL DE /lib/validators.ts ---
+
+export function validarCliente(formData: any) {
+  const errores: Record<string, string> = {};
+
+  // Validación de Nombre
+  if (!formData.nombre?.trim()) {
+    errores.nombre = "Falta ingresar nombre";
+  }
+
+  // Validación de Apellido
+  if (!formData.apellido?.trim()) {
+    errores.apellido = "Falta ingresar apellido";
+  }
+
+ // Validación de Celular (Limpieza y comprobación)
+if (!formData.celular || String(formData.celular).trim() === "") {
+  errores.celular = "Falta ingresar celular";
+} else {
+  // 1. LIMPIEZA: Quitamos todo lo que no sea un número (paréntesis, guiones, espacios)
+  const celularSoloNumeros = String(formData.celular).replace(/\D/g, "");
+
+  // 2. COMPROBACIÓN: ¿Tiene el largo mínimo para ser un teléfono real?
+  if (celularSoloNumeros.length < 8) {
+    errores.celular = "El celular es demasiado corto (mín. 8 dígitos)";
+  } 
+  
+  // 3. OPCIONAL: Si quieres guardar el celular ya limpio en el objeto original
+  // formData.celular = celularSoloNumeros; 
+}
+
+  // Validación de Email (Opcional, pero si hay algo, que sea válido)
+  if (formData.email?.trim()) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      errores.email = "El formato de email no es correcto";
+    }
+  }
+
+  // Validación de Fecha de Nacimiento (Opcional, formato DD/MM/YYYY)
+  if (formData.fecha_nacimiento?.trim()) {
+    const fechaRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!fechaRegex.test(formData.fecha_nacimiento)) {
+      errores.fecha_nacimiento = "Usa el formato DD/MM/YYYY";
+    }
+  }
+
+  // Validación de DNI o cuit
+  if (!formData.dni_cuit?.trim()) {
+    errores.dni_cuit = "Falta ingresar DNI o CUIT";
+  } else {
+    const dniCuitRegex = /^\d{8,}$/;
+    if (!dniCuitRegex.test(formData.dni_cuit)) {
+      errores.dni_cuit = "Ingresá un DNI o CUIT válido (mín. 8 dígitos)";
+    }
+  }
+
+  return errores;
+}
