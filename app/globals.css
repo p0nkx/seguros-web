@@ -88,3 +88,10 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Forzamos que todos los botones tengan el cursor de mano */
+button, 
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer !important;
+}

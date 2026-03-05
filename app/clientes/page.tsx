@@ -2,6 +2,7 @@
 import { getClientes } from './actions';
 import ClientesList from '../components/ClientesList';
 import { Cliente } from '../components/ClientesList';
+import{ useAuthStore } from '../src/store/useAuthStore';
 
 export const dynamic = 'force-dynamic';
 

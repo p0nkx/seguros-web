@@ -1,13 +1,23 @@
+//app/components/header.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useAuthStore } from "../src/store/useAuthStore";
+import { useRouter } from "next/navigation";
+
+
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  const { isAuthenticated, logout } = useAuthStore();
+  const router = useRouter();
+
+ 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +28,33 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLogout = () => {
+     // 1. Limpiamos el estado global (Zustand)
+    logout();
+
+    // 2. Borramos la cookie para el Middleware
+    document.cookie = "auth-session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+    // 3. ¡IMPORTANTE! Redirigimos al inicio inmediatamente
+    // Esto evita que el usuario se quede viendo los datos de clientes
+    router.push("/");
+    
+    // Opcional: router.refresh() para limpiar cualquier cache del servidor
+    router.refresh();
+
+
+    logout(); // Limpia Zustand
+    // Borra la cookie poniendo una fecha de expiración pasada
+    document.cookie = "auth-session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  };
+
+
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-  scrolled || pathname === "/cotizacion" || pathname === "/clientes"
-    ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
-    : "bg-transparent py-5"
-}`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || pathname === "/cotizacion" || pathname === "/clientes"
+          ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
+          : "bg-transparent py-5"
+        }`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
@@ -77,18 +107,28 @@ export default function Header() {
             </Link>
           </li>
 
-          {/* <li>
-            <a
-              href="/login"
-              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                scrolled
-                  ? "bg-[#163594] text-white hover:bg-blue-700"
-                  : "bg-white text-[#001f3d] hover:bg-gray-200"
-              }`}
-            >
-              Ingresar
-            </a>
-          </li> */}
+          {isAuthenticated && (
+            <li>
+              <Link href="/clientes" className="text-blue-400 font-bold border-b-2 border-blue-400">
+                Clientes
+              </Link>
+            </li>
+          )}
+          {/* Botón Ingresar o Salir */}
+          <li>
+            {isAuthenticated ? (
+              <button
+                onClick={handleLogout}
+                className="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-all"
+              >
+                Salir
+              </button>
+            ) : (
+              <Link href="/login" className="bg-white text-[#001f3d] px-4 py-2 rounded-lg hover:bg-gray-200 transition-all">
+                Ingresar
+              </Link>
+            )}
+          </li>
 
         </ul>
 
@@ -103,9 +143,8 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
-          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="bg-[#001f3d] text-white px-6 py-6 space-y-4 font-medium">
 
@@ -141,13 +180,31 @@ export default function Header() {
             Contacto
           </a>
 
-          <a
-            href="/login"
-            onClick={() => setMenuOpen(false)}
-            className="block bg-[#163594] px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition-all duration-300"
-          >
-            Ingresar
-          </a>
+          {isAuthenticated && (
+            <a
+              href="/clientes"
+              onClick={() => setMenuOpen(false)}
+              className="block bg-[#163594] px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition-all duration-300"
+            >
+              Clientes
+            </a>
+          )}
+
+          {/* Botón Ingresar o Salir */}
+          <li>
+            {isAuthenticated ? (
+              <button
+                onClick={handleLogout}
+                className="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-all"
+              >
+                Salir
+              </button>
+            ) : (
+              <Link href="/login" className="bg-white text-[#001f3d] px-4 py-2 rounded-lg hover:bg-gray-200 transition-all">
+                Ingresar
+              </Link>
+            )}
+          </li>
 
         </div>
       </div>
@@ -155,3 +212,4 @@ export default function Header() {
     </header>
   );
 }
+

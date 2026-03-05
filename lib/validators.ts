@@ -27,7 +27,7 @@ export function validarCotizacion(
 
   if (!formData.telefono?.trim()) {
     errores.telefono = "Falta ingresar teléfono";
-  }else{
+  } else {
     const telefonoRegex = /^\d{8,}$/;
 
     if (!telefonoRegex.test(formData.telefono)) {
@@ -73,28 +73,35 @@ export function validarCliente(formData: any) {
   // Validación de Nombre
   if (!formData.nombre?.trim()) {
     errores.nombre = "Falta ingresar nombre";
+  } else {
+    const nombreRegex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/; // Agregué ñÑ que faltaban
+    if (!nombreRegex.test(formData.nombre)) {
+      errores.nombre = "El nombre solo puede contener letras y espacios";
+    }
   }
 
   // Validación de Apellido
   if (!formData.apellido?.trim()) {
     errores.apellido = "Falta ingresar apellido";
+  } else {
+    const apellidoRegex = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
+    if (!apellidoRegex.test(formData.apellido)) {
+      errores.apellido = "El apellido solo puede contener letras y espacios";
+    }
   }
 
- // Validación de Celular (Limpieza y comprobación)
-if (!formData.celular || String(formData.celular).trim() === "") {
-  errores.celular = "Falta ingresar celular";
-} else {
-  // 1. LIMPIEZA: Quitamos todo lo que no sea un número (paréntesis, guiones, espacios)
-  const celularSoloNumeros = String(formData.celular).replace(/\D/g, "");
+  // Validación de Celular (Limpieza y comprobación)
+  if (!formData.celular || String(formData.celular).trim() === "") {
+    errores.celular = "Falta ingresar celular";
+  } else {
+    // 1. LIMPIEZA: Quitamos todo lo que no sea un número (paréntesis, guiones, espacios)
+    const celularSoloNumeros = String(formData.celular).replace(/\D/g, "");
 
-  // 2. COMPROBACIÓN: ¿Tiene el largo mínimo para ser un teléfono real?
-  if (celularSoloNumeros.length < 8) {
-    errores.celular = "El celular es demasiado corto (mín. 8 dígitos)";
-  } 
-  
-  // 3. OPCIONAL: Si quieres guardar el celular ya limpio en el objeto original
-  // formData.celular = celularSoloNumeros; 
-}
+    // 2. COMPROBACIÓN: ¿Tiene el largo mínimo para ser un teléfono real?
+    if (celularSoloNumeros.length < 8) {
+      errores.celular = "El celular es demasiado corto (mín. 8 dígitos)";
+    }
+  }
 
   // Validación de Email (Opcional, pero si hay algo, que sea válido)
   if (formData.email?.trim()) {
@@ -104,11 +111,33 @@ if (!formData.celular || String(formData.celular).trim() === "") {
     }
   }
 
-  // Validación de Fecha de Nacimiento (Opcional, formato DD/MM/YYYY)
+  // Validación de Fecha de Nacimiento (Blindada)
   if (formData.fecha_nacimiento?.trim()) {
     const fechaRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+
     if (!fechaRegex.test(formData.fecha_nacimiento)) {
       errores.fecha_nacimiento = "Usa el formato DD/MM/YYYY";
+    } else {
+      // Si el formato es OK, desarmamos la fecha:
+      const [dia, mes, anio] = formData.fecha_nacimiento.split('/').map(Number);
+      const fechaObjeto = new Date(anio, mes - 1, dia);
+
+      // 1. Verificar si la fecha existe (JS corrige fechas locas, ej: 31/02 pasa a 03/03)
+      if (
+        fechaObjeto.getFullYear() !== anio ||
+        fechaObjeto.getMonth() !== mes - 1 ||
+        fechaObjeto.getDate() !== dia
+      ) {
+        errores.fecha_nacimiento = "La fecha ingresada no existe";
+      }
+      // 2. Verificar que no sea una fecha futura
+      else if (fechaObjeto > new Date()) {
+        errores.fecha_nacimiento = "La fecha no puede ser futura";
+      }
+      // 3. Verificar coherencia (ej: nadie vive más de 120 años)
+      else if (anio < 1900) {
+        errores.fecha_nacimiento = "Año de nacimiento no válido";
+      }
     }
   }
 
