@@ -20,6 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+
+  
   title: "Estudio NAG | Seguros y Asesoría",
   description: "Productora de seguros profesional. Cotizá tu seguro online.",
   

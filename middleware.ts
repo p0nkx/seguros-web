@@ -1,24 +1,30 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Cambiamos a export default
 export default function middleware(request: NextRequest) {
   const authSession = request.cookies.get('auth-session');
+  const userRole = request.cookies.get('user-role')?.value;
 
-  // Si intenta entrar a /clientes y NO tiene la cookie
-  if (request.nextUrl.pathname.startsWith('/clientes')) {
+  const { pathname } = request.nextUrl;
+
+  // 1. Proteger rutas que requieren estar logueado
+  if (pathname.startsWith('/clientes') || pathname.startsWith('/usuarios')) {
     if (!authSession) {
-      // Redirigir al login
-      const loginUrl = new URL('/login', request.url);
-      return NextResponse.redirect(loginUrl);
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
+
+  // 2. Proteger rutas exclusivas de admin
+  if (pathname.startsWith('/usuarios')) {
+    if (userRole !== 'admin') {
+      // Si no es admin, lo mandamos a clientes (o al home)
+      return NextResponse.redirect(new URL('/', request.url));
     }
   }
 
   return NextResponse.next();
 }
 
-// El matcher se queda igual
 export const config = {
-  matcher: ['/clientes/:path*'],
+  matcher: ['/clientes/:path*', '/usuarios/:path*'],
 };

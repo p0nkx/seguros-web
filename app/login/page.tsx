@@ -4,32 +4,38 @@
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../src/store/useAuthStore"; // Importamos el store
 import { useRouter } from "next/navigation"; // Para redirigir después del login
+import { validarLogin } from "./authActions"; // Nueva función para validar contra la DB
+
 
 export default function LoginPage() {
   const [loaded, setLoaded] = useState(false);
-  const [email, setEmail] = useState(""); // Nuevo: para capturar email
+  const [identificador, setIdentificador] = useState(""); // Nuevo: para capturar email o nombre de usuario
   const [password, setPassword] = useState(""); // Nuevo: para capturar password
   const login = useAuthStore((state) => state.login); // Obtenemos la función de login del store
   const router = useRouter(); // Para redirigir después del login
 
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => { setLoaded(true); }, []);
 
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === "admin@seguros.com" && password === "contraseña2026") {
-      // 1. Guardamos en el store (para el Header y UI)
-      login();
 
-      // 2. CREAMOS LA COOKIE (la "llave" para el middleware)
-      // Esto crea una cookie llamada 'auth-session' que dura 1 día
+    setError(null); // Limpiamos errores previos
+
+    // LLAMADA A LA BASE DE DATOS
+    const resultado = await validarLogin(identificador, password);
+
+    if (resultado.success && resultado.user) {
+      login(resultado.user.role || "user"); // Guardamos el rol del usuario en Zustand
       document.cookie = "auth-session=true; path=/; max-age=86400; SameSite=Lax";
-
       router.push("/clientes");
     } else {
-      alert("Error");
+      
+      setError(resultado.message || "Credenciales incorrectas");
     }
   };
+
 
   return (
     <main className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#001f3d] to-[#163594] px-6 overflow-hidden">
@@ -52,16 +58,23 @@ export default function LoginPage() {
 
         <form className="space-y-6" onSubmit={handleSubmit}>
 
+
+          {error && (
+            <div className="p-3 rounded-lg bg-red-500/20 border border-red-500/40 text-red-200 text-sm text-center animate-in fade-in duration-300">
+              {error}
+            </div>
+          )}
+
           {/* Email */}
           <div>
             <label className="block text-sm text-white mb-2">
               Email
             </label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="correo@ejemplo.com"
+              type="text"
+              value={identificador}
+              onChange={(e) => setIdentificador(e.target.value)}
+              placeholder="correo@ejemplo.com o nombre de usuario"
               className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-white/60 
               border border-white/30 focus:outline-none 
               focus:ring-2 focus:ring-white focus:shadow-lg 

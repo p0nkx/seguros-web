@@ -123,7 +123,7 @@ export default function ClienteForm({ cliente, onClose, clientesActuales }: Clie
   `;
 
   return (
-    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-slate-100 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
       <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
 
         {/* CABECERA */}

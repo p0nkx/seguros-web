@@ -9,15 +9,16 @@ import { useRouter } from "next/navigation";
 
 
 
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const { isAuthenticated, logout } = useAuthStore();
+  const { isAuthenticated, logout, role } = useAuthStore();
   const router = useRouter();
 
- 
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +30,7 @@ export default function Header() {
   }, []);
 
   const handleLogout = () => {
-     // 1. Limpiamos el estado global (Zustand)
+    // 1. Limpiamos el estado global (Zustand)
     logout();
 
     // 2. Borramos la cookie para el Middleware
@@ -38,7 +39,7 @@ export default function Header() {
     // 3. ¡IMPORTANTE! Redirigimos al inicio inmediatamente
     // Esto evita que el usuario se quede viendo los datos de clientes
     router.push("/");
-    
+
     // Opcional: router.refresh() para limpiar cualquier cache del servidor
     router.refresh();
 
@@ -51,9 +52,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || pathname === "/cotizacion" || pathname === "/clientes"
-          ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-transparent py-5"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled || pathname === "/cotizacion" || pathname === "/clientes" || pathname === "/usuarios"
+        ? "bg-[#001f3d]/95 backdrop-blur-md shadow-lg py-3"
+        : "bg-transparent py-5"
         }`}
     >
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -108,12 +109,25 @@ export default function Header() {
           </li>
 
           {isAuthenticated && (
-            <li>
-              <Link href="/clientes" className="text-blue-400 font-bold border-b-2 border-blue-400">
-                Clientes
-              </Link>
-            </li>
+            <>
+              {/* Este lo ven todos los usuarios logueados */}
+              <li>
+                <Link href="/clientes" className="text-white hover:text-[#163594] transition-colors duration-300">
+                  Clientes
+                </Link>
+              </li>
+
+              {/* Este solo lo ven los usuarios logueados QUE ADEMÁS sean admin */}
+              {role === 'admin' && (
+                <li>
+                  <Link href="/usuarios" className="text-white hover:text-[#163594] transition-colors duration-300">
+                    Usuarios
+                  </Link>
+                </li>
+              )}
+            </>
           )}
+
           {/* Botón Ingresar o Salir */}
           <li>
             {isAuthenticated ? (
