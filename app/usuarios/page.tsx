@@ -4,9 +4,6 @@ import { obtenerUsuarios, eliminarUsuario } from "../login/authActions";
 import { useAuthStore } from "../src/store/useAuthStore";
 import UsuarioModal from "./componentes/UsuarioModal";
 
-
-
-
 export default function GestionUsuarios() {
     const [usuarios, setUsuarios] = useState<any[]>([]);
     const { role } = useAuthStore();
@@ -48,8 +45,6 @@ export default function GestionUsuarios() {
             <p className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">Acceso denegado. Solo administradores.</p>
         </div>
     );
-
-    
 
     return (
         // bg-[#0f172a] es un gris azulado muy profundo y elegante. 

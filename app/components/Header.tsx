@@ -15,10 +15,13 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
+
+  // Cambia a 'true' cuando quieras habilitar el sistema de usuarios en producción
+  const ENABLE_USER_SYSTEM = false;
+
+
   const { isAuthenticated, logout, role } = useAuthStore();
   const router = useRouter();
-
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,23 +33,16 @@ export default function Header() {
   }, []);
 
   const handleLogout = () => {
-    // 1. Limpiamos el estado global (Zustand)
+   // 1. Limpiamos el estado global
     logout();
 
-    // 2. Borramos la cookie para el Middleware
+    // 2. Borramos las cookies explícitamente
     document.cookie = "auth-session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    document.cookie = "user-role=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
-    // 3. ¡IMPORTANTE! Redirigimos al inicio inmediatamente
-    // Esto evita que el usuario se quede viendo los datos de clientes
-    router.push("/");
-
-    // Opcional: router.refresh() para limpiar cualquier cache del servidor
-    router.refresh();
-
-
-    logout(); // Limpia Zustand
-    // Borra la cookie poniendo una fecha de expiración pasada
-    document.cookie = "auth-session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    // 3. Forzamos recarga completa al inicio
+    // Esto es más efectivo que router.push para romper la sesión
+    window.location.href = "/";
   };
 
 
@@ -133,14 +129,26 @@ export default function Header() {
             {isAuthenticated ? (
               <button
                 onClick={handleLogout}
-                className="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition-all"
+                className="flex items-center gap-2 p-2 text-slate-400 hover:text-red-400 transition-colors group"
+                title="Cerrar Sesión"
               >
-                Salir
+                <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">Salir</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                </svg>
               </button>
             ) : (
-              <Link href="/login" className="bg-white text-[#001f3d] px-4 py-2 rounded-lg hover:bg-gray-200 transition-all">
-                Ingresar
+              ENABLE_USER_SYSTEM && (
+              <Link
+                href="/login"
+                className="p-2 text-slate-400 hover:text-white transition-colors"
+                title="Ingresar al sistema"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                </svg>
               </Link>
+              )
             )}
           </li>
 

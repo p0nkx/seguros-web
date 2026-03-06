@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'; // Importación necesaria
 // --- FUNCIÓN 1: REGISTRAR USUARIO (Nueva función para el registro) ---
 export async function registrarUsuario(formData: FormData) {
   const sql = neon(process.env.DATABASE_URL!);
-  
+
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
   const nombre = formData.get('nombre') as string;
@@ -31,7 +31,7 @@ export async function registrarUsuario(formData: FormData) {
 // --- FUNCIÓN 2: VALIDAR LOGIN (Nueva función para el login) ---
 export async function validarLogin(identificador: string, pass: string) {
   const sql = neon(process.env.DATABASE_URL!);
-  
+
   try {
     // Buscamos al usuario por email o nombre de usuario
     const usuarios = await sql`SELECT * FROM usuarios WHERE email = ${identificador} OR username = ${identificador} LIMIT 1`;
@@ -44,17 +44,17 @@ export async function validarLogin(identificador: string, pass: string) {
 
     // Comparamos la clave ingresada con el hash guardado en Neon
     const esValida = await bcrypt.compare(pass, usuario.password_hash);
-    
+
     if (esValida) {
       registrarConexion(usuario.id); // Actualizamos la última conexión
 
       // Crear la cookie de sesión y la cookie de rol
-    const cookieStore = await cookies();
-    cookieStore.set('auth-session', 'true', { httpOnly: true, secure: true, sameSite: 'lax' });
-    cookieStore.set('user-role', usuario.role, { httpOnly: true, secure: true, sameSite: 'lax' });
+      const cookieStore = await cookies();
+      cookieStore.set('auth-session', 'true', { httpOnly: true, secure: true, sameSite: 'lax' });
+      cookieStore.set('user-role', usuario.role, { httpOnly: true, secure: true, sameSite: 'lax' });
 
-      return { 
-        success: true, 
+      return {
+        success: true,
         user: { email: usuario.email, nombre: usuario.nombre, role: usuario.role } // Asegúrate de tener un campo 'role' en tu tabla
       };
     } else {

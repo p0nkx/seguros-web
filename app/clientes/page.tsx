@@ -9,6 +9,8 @@ export const dynamic = 'force-dynamic';
 export default async function Page() {
   const datosBrutos = await getClientes();
 
+  
+
   // TRANSFORMACIÓN: Convertimos objetos Date a Strings
   const clientes: Cliente[] = datosBrutos.map((cliente: any) => ({
     ...cliente,
@@ -20,6 +22,7 @@ export default async function Page() {
       ? cliente.fecha_nacimiento.toLocaleDateString('es-AR') 
       : cliente.fecha_nacimiento,
   }));
+  
 
   return (
     <main className="min-h-screen bg-[#f1f5f9] pt-28 pb-20">
